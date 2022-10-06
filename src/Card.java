@@ -1,97 +1,120 @@
+package src;
 public class Card {
     private char suit;
     private int value;
-    private char name;
+    private String name;
 
     private Card() {
         this.suit = ' ';
         this.value = 0;
-        this.name = ' ';
+        this.name = " ";
+    }
+    public Card(char newSuit, String newName) throws InvalidCardValueNameException, InvalidCardSuitException {
+        if (newName != "Ace" || newName != "Two" || newName != "Three" || newName != "Four" ||
+                newName != "Five" || newName != "Six" || newName != "Seven" || newName != "Eight" ||
+                newName != "Nine" || newName != "Ten" || newName != "Joker" || newName != "Queen" || newName != "King"  ) {
+            throw new InvalidCardValueNameException(newName);
+        } else {
+
+            this.name = newName;
+            this.set_value();
+        }
+        if (newSuit != 'H' && newSuit != 'S' && newSuit != 'D' && newSuit != 'C') {
+            throw new InvalidCardSuitException(newSuit);
+        } else {
+            this.suit = newSuit;
+        }
+
+    }
+
+
+    public String toString() {
+
+        return getSuitName() + " " + get_name();
+
     }
 
     public String getSuitName() {
 
-        String suit_name;
+        String suit;
 
         if (this.suit == 'H') {
 
-            suit_name = "Hearts";
+            suit = "Hearts";
 
-        } else if (this.suit == 'S') {
+        }
+        else if (this.suit == 'S') {
 
-            suit_name = "Spades";
+            suit = "Spades";
 
-        } else if (this.suit == 'C') {
+        }
+        else if (this.suit == 'C') {
 
-            suit_name = "Clubs";
+            suit = "Clubs";
 
-        } else if (this.suit == 'D') {
+        }
+        else if (this.suit == 'D') {
 
-            suit_name = "Diamonds";
+            suit = "Diamonds";
 
         } else {
 
-            suit_name = "Unknown";
+            suit = "Unknown";
         }
 
-        return suit_name;
-    }
+        return suit;
 
-    public int getValue(){
+    }
+    public void set_value(){
+        if (this.name == "Ace") {// Ace can be either 1 or 11, remeber to handle this in th value calcuation part :)
+            this.value = 1 ;
+        }
+        else if (this.name == "Two"){
+            this.value = 2;
+        }
+        else if (this.name == "Three"){
+            this.value = 3;
+        }
+        else if (this.name == "Four"){
+            this.value = 4;
+        }
+        else if (this.name == "Five"){
+            this.value = 5;
+        }
+        else if (this.name == "Six"){
+            this.value = 6;
+        }
+        else if (this.name == "Seven"){
+            this.value = 7;
+        }
+        else if (this.name == "Eight"){
+            this.value = 8;
+        }
+        else if (this.name == "Nine"){
+            this.value = 9;
+        }
+        else if (this.name == "Joker"){
+            this.value = 10;
+        }
+        else if (this.name == "Queen"){
+            this.value = 10;
+        }
+        else if (this.name == "King"){
+            this.value = 10;
+        }
+    }
+    public int get_value() {
+
         return this.value;
     }
+    public String get_name() {
 
-    public String getValueName(){
+        return this.name;
+    }
+    public char get_suit() {
 
-        String name = "Unknown";
+        return this.suit;
+    }
 
-        if (this.value == 1) {
-            name = "Ace";
-        }
-        else if (this.value == 2) {
-            name = "Two";
-        }
-        else if (this.value == 3) {
-            name = "Three";
-        }
-        else if (this.value == 4) {
-            name = "Four";
-        }
-        else if (this.value == 5) {
-            name = "Five";
-        }
-        else if (this.value == 6) {
-            name = "Six";
-        }
-        else if (this.value == 7) {
-            name = "Seven";
-        }
-        else if (this.value == 8) {
-            name = "Eight";
-        }
-        else if (this.value == 9) {
-
-            name = "Nine";
-        }
-        else if (this.value == 10) {
-
-            name = "Ten";
-        }
-        else if (this.value == 11) {
-
-            name = "Jack";
-        }
-        else if (this.value == 12) {
-
-            name = "Queen";
-        }
-        else if (this.value == 13) {
-
-            name = "King";
-
-        }
-        return name;
 
     }
-    public Card(char suit)
-}

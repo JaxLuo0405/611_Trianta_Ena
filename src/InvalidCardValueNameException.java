@@ -1,29 +1,29 @@
 package src;
 
-public class InvalidCardNameException extends Exception
+public class InvalidCardValueNameException extends Exception
 {
     private String valueIdentifier = " ";
 
-    public InvalidCardNameException(String invalidName) {
+    public InvalidCardValueNameException(String invalidName) {
 
         valueIdentifier = invalidName ;
 
-        System.out.println("Invalid value " + invalidValue);
+        System.out.println("Invalid card value name " + invalidName);
     }
 
-    private InvalidCardValueException() {
+    private InvalidCardValueNameException() {
 
 
-        System.out.println("Invalid value");
+        System.out.println("Invalid card value name");
     }
 
     public String toString() {
 
 
-        return ("Attempted to create card with invalid suit argument" + " " + this.valueIdentifier);
+        return ("Attempted to create card with invalid value name argument" + " " + this.valueIdentifier);
     }
 
-    public int getValue() {
+    public String getValue() {
 
         return valueIdentifier;
     }
