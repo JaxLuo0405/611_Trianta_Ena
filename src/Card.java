@@ -1,4 +1,5 @@
 package src;
+
 import java.util.*;
     public class Card {
         private char suit;
@@ -27,43 +28,50 @@ import java.util.*;
                 this.suit = newSuit;
             }
 
+
+            this.name = newName;
+            this.set_value();
+        }
+        if (newSuit != 'H' && newSuit != 'S' && newSuit != 'D' && newSuit != 'C') {
+            throw new InvalidCardSuitException(newSuit);
+        } else {
+            this.suit = newSuit;
         }
 
+    }
 
-        public String toString() {
 
-            return getSuitName() + " " + get_name();
+    public String toString() {
 
+        return getSuitName() + " " + get_name();
+
+    }
+
+    public String getSuitName() {
+
+        String suit;
+
+        if (this.suit == 'H') {
+
+            suit = "Hearts";
+
+        } else if (this.suit == 'S') {
+
+            suit = "Spades";
+
+        } else if (this.suit == 'C') {
+
+            suit = "Clubs";
+
+        } else if (this.suit == 'D') {
+
+            suit = "Diamonds";
+
+        } else {
+
+            suit = "Unknown";
         }
 
-        public String getSuitName() {
-
-            String suit;
-
-            if (this.suit == 'H') {
-
-                suit = "Hearts";
-
-            } else if (this.suit == 'S') {
-
-                suit = "Spades";
-
-            } else if (this.suit == 'C') {
-
-                suit = "Clubs";
-
-            } else if (this.suit == 'D') {
-
-                suit = "Diamonds";
-
-            } else {
-
-                suit = "Unknown";
-            }
-
-            return suit;
-
-        }
 
         public void set_value() {
             if (this.name == "Ace") {// Ace can be either 1 or 11, remeber to handle this in th value calcuation part :)
@@ -93,24 +101,23 @@ import java.util.*;
             }
         }
 
-        public int get_value() {
 
-            return this.value;
-        }
+    public int get_value() {
 
-        public String get_name() {
-
-            return this.name;
-        }
-
-        public char get_suit() {
-
-            return this.suit;
-        }
-
-        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-            Card jax = new Card('H',"Two");
-
-        }
-
+        return this.value;
     }
+
+    public String get_name() {
+
+        return this.name;
+    }
+
+
+    public char get_suit() {
+
+
+        return this.suit;
+    }
+
+
+}
