@@ -1,6 +1,6 @@
 package src;
 
-public class Card {
+
     public class Card {
         private char suit;
         private int value;
@@ -11,10 +11,11 @@ public class Card {
             this.value = 0;
             this.name = " ";
         }
+
         public Card(char newSuit, String newName) throws InvalidCardValueNameException, InvalidCardSuitException {
             if (newName != "Ace" || newName != "Two" || newName != "Three" || newName != "Four" ||
                     newName != "Five" || newName != "Six" || newName != "Seven" || newName != "Eight" ||
-                    newName != "Nine" || newName != "Ten" || newName != "Joker" || newName != "Queen" || newName != "King"  ) {
+                    newName != "Nine" || newName != "Ten" || newName != "Joker" || newName != "Queen" || newName != "King") {
                 throw new InvalidCardValueNameException(newName);
             } else {
 
@@ -44,18 +45,15 @@ public class Card {
 
                 suit = "Hearts";
 
-            }
-            else if (this.suit == 'S') {
+            } else if (this.suit == 'S') {
 
                 suit = "Spades";
 
-            }
-            else if (this.suit == 'C') {
+            } else if (this.suit == 'C') {
 
                 suit = "Clubs";
 
-            }
-            else if (this.suit == 'D') {
+            } else if (this.suit == 'D') {
 
                 suit = "Diamonds";
 
@@ -67,52 +65,45 @@ public class Card {
             return suit;
 
         }
-        public void set_value(){
+
+        public void set_value() {
             if (this.name == "Ace") {// Ace can be either 1 or 11, remeber to handle this in th value calcuation part :)
-                this.value = 1 ;
-            }
-            else if (this.name == "Two"){
+                this.value = 1;
+            } else if (this.name == "Two") {
                 this.value = 2;
-            }
-            else if (this.name == "Three"){
+            } else if (this.name == "Three") {
                 this.value = 3;
-            }
-            else if (this.name == "Four"){
+            } else if (this.name == "Four") {
                 this.value = 4;
-            }
-            else if (this.name == "Five"){
+            } else if (this.name == "Five") {
                 this.value = 5;
-            }
-            else if (this.name == "Six"){
+            } else if (this.name == "Six") {
                 this.value = 6;
-            }
-            else if (this.name == "Seven"){
+            } else if (this.name == "Seven") {
                 this.value = 7;
-            }
-            else if (this.name == "Eight"){
+            } else if (this.name == "Eight") {
                 this.value = 8;
-            }
-            else if (this.name == "Nine"){
+            } else if (this.name == "Nine") {
                 this.value = 9;
-            }
-            else if (this.name == "Joker"){
+            } else if (this.name == "Joker") {
                 this.value = 10;
-            }
-            else if (this.name == "Queen"){
+            } else if (this.name == "Queen") {
                 this.value = 10;
-            }
-            else if (this.name == "King"){
+            } else if (this.name == "King") {
                 this.value = 10;
             }
         }
+
         public int get_value() {
 
             return this.value;
         }
+
         public String get_name() {
 
             return this.name;
         }
+
         public char get_suit() {
 
             return this.suit;
