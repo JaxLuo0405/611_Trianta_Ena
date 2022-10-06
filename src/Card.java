@@ -6,7 +6,7 @@ import java.util.*;
         private int value;
         private String name;
 
-        private Card() {
+        private Card() throws InvalidCardSuitException {
             this.suit = ' ';
             this.value = 0;
             this.name = " ";
@@ -28,26 +28,12 @@ import java.util.*;
                 this.suit = newSuit;
             }
 
-
-            this.name = newName;
-            this.set_value();
-        }
-        if (newSuit != 'H' && newSuit != 'S' && newSuit != 'D' && newSuit != 'C') {
-            throw new InvalidCardSuitException(newSuit);
-        } else {
-            this.suit = newSuit;
         }
 
-    }
 
 
-    public String toString() {
 
-        return getSuitName() + " " + get_name();
-
-    }
-
-    public String getSuitName() {
+    public String get_suit_name() {
 
         String suit;
 
@@ -71,7 +57,8 @@ import java.util.*;
 
             suit = "Unknown";
         }
-
+        return suit;
+    }
 
         public void set_value() {
             if (this.name == "Ace") {// Ace can be either 1 or 11, remeber to handle this in th value calcuation part :)
@@ -115,9 +102,12 @@ import java.util.*;
 
     public char get_suit() {
 
-
         return this.suit;
     }
+        public String toString() {
 
+            return get_suit_name() + " " + get_value();
+
+        }
 
 }
