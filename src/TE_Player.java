@@ -3,14 +3,16 @@ package src;
 //	public choose_dealer(int d){ outside, make player with pid=d dealer, change money
 
 //extends player
-class TE_Player {
+class TE_Player extends Player{
 	/*	public static int playerNum = 0;
-	public String name;
-	private int winNum; */
+	public String name; */
+	private int winNum; 
 	public boolean isDealer = false;
 	private int pid;
 	private int money;
+	private int bet;
 	private Card[] hand;
+	private int handVal;
 	
 	public TE_Player(String pname){ //normal player
 		money = 100;
@@ -20,8 +22,9 @@ class TE_Player {
 		playerNum++;
 	}
 	
-	public void set_dealer_money(){
+	public void set_dealer(){
 		money = (playerNum-1)*100;
+		isDealer = true;
 	}
 	
 	public int get_money(){
@@ -33,9 +36,13 @@ class TE_Player {
 		return null;
 	}
 	
-	public int add_cards(){
-		//todo add the value of the deck of cards
-		return 0;
+	public int add_hand(){
+		int totNum = 0;
+		for(int c = 0; c<hand.length; c++){
+			totNum += hand[c].getValue();
+		}
+		handVal = totNum;
+		return totNum;
 	}
 	
 	

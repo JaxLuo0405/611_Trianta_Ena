@@ -1,3 +1,5 @@
+package src; 
+
 public class Card {
     private char suit;
     private int value;
