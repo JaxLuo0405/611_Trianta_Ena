@@ -7,6 +7,12 @@ class Player{
 	public String piece;
 	private int winNum;
 	
+	public Player(){
+		winNum = 0;
+		name = "Player "+playerNum;
+		playerNum ++;
+	}
+	
 	public Player(String p){
 		playerNum ++;
 		winNum = 0;
