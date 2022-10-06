@@ -5,5 +5,8 @@ public interface Game {
         return false;
     }
 
-    default void playGame() {}
+    default void playGame() {
+        //ask for the number of player + dealer
+        //
+    }
 }
