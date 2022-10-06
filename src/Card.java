@@ -1,5 +1,5 @@
 package src;
-
+import java.util.*;
     public class Card {
         private char suit;
         private int value;
@@ -12,9 +12,9 @@ package src;
         }
 
         public Card(char newSuit, String newName) throws InvalidCardValueNameException, InvalidCardSuitException {
-            if (newName != "Ace" || newName != "Two" || newName != "Three" || newName != "Four" ||
-                    newName != "Five" || newName != "Six" || newName != "Seven" || newName != "Eight" ||
-                    newName != "Nine" || newName != "Ten" || newName != "Joker" || newName != "Queen" || newName != "King") {
+            String[] values= new String[]{"Ace", "Two", "Three" , "Four" , "Five" , "Six" , "Seven", "Eight" , "Nine", "Ten" ,"Jack","Queen","King"};
+            List<String> valuesList = new ArrayList<>(Arrays.asList(values));
+            if (valuesList.contains(newName)) {
                 throw new InvalidCardValueNameException(newName);
             } else {
 
@@ -84,7 +84,7 @@ package src;
                 this.value = 8;
             } else if (this.name == "Nine") {
                 this.value = 9;
-            } else if (this.name == "Joker") {
+            } else if (this.name == "Jack") {
                 this.value = 10;
             } else if (this.name == "Queen") {
                 this.value = 10;
@@ -108,5 +108,9 @@ package src;
             return this.suit;
         }
 
+        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
+            Card jax = new Card('H',"Two");
+
+        }
 
     }
