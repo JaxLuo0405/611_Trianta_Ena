@@ -17,23 +17,23 @@ class Trianta_Ena implements Game {
 	
 	//one card each player, face down. dealer one card face up
 	//default card faces up
-	public void start_deal(){
-		decks.shuffle();
-		for(int p=0; p<player.length; p++){
-			if(p==dealerInd)
-				player[p].add_card(decks.nextCard());
-			else
-				player[p].add_card(decks.nextCard(false));
-		}
-	}
+//	public void start_deal() throws InvalidDeckPositionException {
+//		decks.shuffle();
+//		for(int p=0; p<players.length; p++){
+//			if(p==dealerInd)
+//				players[p].add_card(decks.nextCard());
+//			else
+//				players[p].add_card(decks.nextCard(false));
+//		}
+//	}
 	
 	public void ask_bet(){
 		int betNum;
-		for(int p=0; p<player.length; p++){
+		for(int p=0; p<players.length; p++){
 			if(p==dealerInd)
 				continue;
 			betNum = InOut.ask_player_bet();
-			players[p].set_bet(betNum);
+			//players[p].set_bet(betNum);
 		}
 	}
 	
@@ -43,8 +43,8 @@ class Trianta_Ena implements Game {
 		//print everyones money
 		//InOut.print_table(table){}
 		
-		//start dealng with one card each player, face down. dealer one card face up
-		start_deal();
+//		//start dealng with one card each player, face down. dealer one card face up
+//		start_deal();
 		
 		//print table
 		//InOut.print_table(table){}

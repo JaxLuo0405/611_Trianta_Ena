@@ -15,7 +15,7 @@ player has three cards (one down, two up), each Player in turn may either hit or
 class TE_Player extends Player{
 	/*	public static int playerNum = 0;
 	public String name; */
-	private int winNum; 
+	private int winNum;
 	public boolean isDealer = false;
 	private int pid;
 	private int money;
@@ -23,7 +23,7 @@ class TE_Player extends Player{
 	private boolean stand = false;
 	private ArrayList<Card> hand;
 	private int handVal;
-	
+
 	public TE_Player(String pname){ //normal player
 		money = 100;
 		winNum = 0;
@@ -32,20 +32,19 @@ class TE_Player extends Player{
 		playerNum++;
 		hand = new ArrayList<>();
 	}
-	
+
 	public TE_Player(int pname){
 		this(String.valueOf(pname));
 	}
-	
+
 	public void set_dealer(){
 		money = (playerNum-1)*100;
 		isDealer = true;
 	}
-	
-	public void fold(){
-		
-	}
 
+	public void fold(){
+
+	}
 	public int get_id(){
 		return this.pid;
 	}
@@ -54,22 +53,13 @@ class TE_Player extends Player{
 	}
 
 
-
-	
-	public void set_bet(int betNum){
-		//if(bet<money)
-		bet = betNum;
-	}
-	
-
 	public void stand(){
 		stand = true;
 	}
-	
+
 	public int get_money(){
 		return this.money;
 	}
-
 
 	public int get_bet(){
 		return this.bet;
@@ -95,16 +85,8 @@ class TE_Player extends Player{
 		handVal = add_hand();
 		return null;
 	}
-	
-	public void add_card(Card card){
 
-		//todo
-		//add new card to hand
-		hand.add(card);
-		handVal = calc_hand();
-	}
-	
-	public int calc_hand(){
+	public int add_hand(){
 		int totNum = 0;
 		int aceFlag = 0;
 		Card card;
@@ -143,7 +125,7 @@ class TE_Player extends Player{
 		}
 
 	}
-	
+
 	public static void main(String[] args) {
 		TE_Player jax = new TE_Player("Jax");
 		System.out.println(jax);
