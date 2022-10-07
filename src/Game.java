@@ -1,12 +1,11 @@
 package src;
 
 public interface Game {
-    default boolean checkWinner() {
+    default boolean check_winner() {
         return false;
     }
+    
+    default void one_round() {}
 
-    default void playGame() {
-        //ask for the number of player + dealer
-        //
-    }
+    default void play_game() {}
 }

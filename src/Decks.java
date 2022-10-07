@@ -50,18 +50,22 @@ public class Decks extends Exception implements Serializable{// This class is fo
 
         nextCardIndex = 0;
     }
+    
+    
     private void is_index_good(int index) throws InvalidDeckPositionException {// this is to make sure the deck index is correct
         if (index < 0 || index > 103) {
             throw new InvalidDeckPositionException(index);
         }
     }
+    
+    
     public String toString(){
 
         String str = "";
 
         for (int i = 0; i < decks.length; i++) {
             str +=	decks[i].toString() + "\n";
-//            break;
+            // break;
         }
         return str;
     }
