@@ -9,46 +9,31 @@ public class Decks extends Exception implements Serializable{// This class is fo
 
     Card[] decks = new Card[104];
 
-    public Decks(){
+    public Decks() {
 
         int count = 0;
-        String[] values= new String[]{"Ace", "Two", "Three" , "Four" , "Five" , "Six" , "Seven", "Eight" , "Nine", "Ten" ,"Jack","Queen","King"};
+        String[] values = new String[]{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
         List<String> valuesList = new ArrayList<>(Arrays.asList(values));
-        try{ // add first deck
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('H', valuesList.get(i-1));
+        try { // add two decks
+            for (int i = 0; i <= 12; i++) {
+                decks[count++] = new Card('H', valuesList.get(i));
+                decks[count++] = new Card('H', valuesList.get(i));
             }
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('S', valuesList.get(i-1));
+            for (int i = 0; i <= 12; i++) {
+                decks[count++] = new Card('S', valuesList.get(i - 1));
+                decks[count++] = new Card('S', valuesList.get(i - 1));
             }
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('C', valuesList.get(i-1));
+            for (int i = 0; i <= 12; i++) {
+                decks[count++] = new Card('C', valuesList.get(i));
+                decks[count++] = new Card('C', valuesList.get(i));
             }
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('D', valuesList.get(i-1));
+            for (int i = 0; i <= 12; i++) {
+                decks[count++] = new Card('D', valuesList.get(i));
+                decks[count++] = new Card('D', valuesList.get(i));
             }
-        } catch(InvalidCardValueNameException | InvalidCardSuitException exp1) {
+        } catch (InvalidCardValueNameException | InvalidCardSuitException exp1) {
 
         }
-
-        try{ // add second deck
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('H', valuesList.get(i-1));
-            }
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('S', valuesList.get(i-1));
-            }
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('C', valuesList.get(i-1));
-            }
-            for (int i = 1; i <= 13; i++) {
-                decks[count++] = new Card('D', valuesList.get(i-1));
-            }
-        } catch(InvalidCardValueNameException | InvalidCardSuitException exp1) {
-
-        }
-
-        nextCardIndex = 0;
     }
     private void is_index_good(int index) throws InvalidDeckPositionException {// this is to make sure the deck index is correct
         if (index < 0 || index > 103) {
