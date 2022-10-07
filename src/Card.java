@@ -1,39 +1,49 @@
 package src;
 
 import java.util.*;
-    public class Card {
-        private char suit;
-        private int value;
-        private String name;
+public class Card {
+    private char suit;
+    private int value;
+    private String name;
+    private boolean show = true;
 
-        private Card() throws InvalidCardSuitException {
-            this.suit = ' ';
-            this.value = 0;
-            this.name = " ";
-        }
+    private Card() throws InvalidCardSuitException {
+        this.suit = ' ';
+        this.value = 0;
+        this.name = " ";
+    }
+    
+    private Card(boolean faceShow) throws InvalidCardSuitException {
+        this.suit = ' ';
+        this.value = 0;
+        this.name = " ";
+        this.show = faceShow;
+    }
 
-        public Card(char newSuit, String newName) throws InvalidCardValueNameException, InvalidCardSuitException {
-            String[] values= new String[]{"Ace", "Two", "Three" , "Four" , "Five" , "Six" , "Seven", "Eight" , "Nine", "Ten" ,"Jack","Queen","King"};
-            List<String> valuesList = new ArrayList<String>(Arrays.asList(values));
+    public Card(char newSuit, String newName) throws InvalidCardValueNameException, InvalidCardSuitException {
+        String[] values= new String[]{"Ace", "Two", "Three" , "Four" , "Five" , "Six" , "Seven", "Eight" , "Nine", "Ten" ,"Jack","Queen","King"};
+        List<String> valuesList = new ArrayList<String>(Arrays.asList(values));
 //            System.out.println(values);
 //            System.out.println(valuesList);
 //            System.out.println(valuesList.contains("Two"));
-            if (!valuesList.contains(newName)) {
-                throw new InvalidCardValueNameException(newName);
-            } else {
+        if (!valuesList.contains(newName)) {
+            throw new InvalidCardValueNameException(newName);
+        } else {
 
-                this.name = newName;
-                this.set_value();
-            }
-            if (newSuit != 'H' && newSuit != 'S' && newSuit != 'D' && newSuit != 'C') {
-                throw new InvalidCardSuitException(newSuit);
-            } else {
-                this.suit = newSuit;
-            }
-
+            this.name = newName;
+            this.set_value();
+        }
+        if (newSuit != 'H' && newSuit != 'S' && newSuit != 'D' && newSuit != 'C') {
+            throw new InvalidCardSuitException(newSuit);
+        } else {
+            this.suit = newSuit;
         }
 
-
+    }
+    
+    public void set_show(boolean isShow){
+        show = isShow;
+    }
 
 
     public String get_suit_name() {
@@ -63,33 +73,33 @@ import java.util.*;
         return suit;
     }
 
-        public void set_value() {
-            if (this.name == "Ace") {// Ace can be either 1 or 11, remeber to handle this in th value calcuation part :)
-                this.value = 1;
-            } else if (this.name == "Two") {
-                this.value = 2;
-            } else if (this.name == "Three") {
-                this.value = 3;
-            } else if (this.name == "Four") {
-                this.value = 4;
-            } else if (this.name == "Five") {
-                this.value = 5;
-            } else if (this.name == "Six") {
-                this.value = 6;
-            } else if (this.name == "Seven") {
-                this.value = 7;
-            } else if (this.name == "Eight") {
-                this.value = 8;
-            } else if (this.name == "Nine") {
-                this.value = 9;
-            } else if (this.name == "Jack") {
-                this.value = 10;
-            } else if (this.name == "Queen") {
-                this.value = 10;
-            } else if (this.name == "King") {
-                this.value = 10;
-            }
+    public void set_value() {
+        if (this.name == "Ace") {// Ace can be either 1 or 11, remeber to handle this in th value calcuation part :)
+            this.value = 1;
+        } else if (this.name == "Two") {
+            this.value = 2;
+        } else if (this.name == "Three") {
+            this.value = 3;
+        } else if (this.name == "Four") {
+            this.value = 4;
+        } else if (this.name == "Five") {
+            this.value = 5;
+        } else if (this.name == "Six") {
+            this.value = 6;
+        } else if (this.name == "Seven") {
+            this.value = 7;
+        } else if (this.name == "Eight") {
+            this.value = 8;
+        } else if (this.name == "Nine") {
+            this.value = 9;
+        } else if (this.name == "Jack") {
+            this.value = 10;
+        } else if (this.name == "Queen") {
+            this.value = 10;
+        } else if (this.name == "King") {
+            this.value = 10;
         }
+    }
 
 
     public int get_value() {
@@ -104,29 +114,28 @@ import java.util.*;
 
 
     public char get_suit() {
-
         return this.suit;
     }
-    public String toString() {return get_suit_name() + " " + get_name();}
+    
+    public String toString() {
+        return get_suit_name() + " " + get_name();
+    }
 
 
-        public boolean compare_suit(Card card){
+    public boolean compare_suit(Card card){
+        return this.suit == card.get_suit();
 
-            return this.suit == card.get_suit();
+    }
 
-        }
+    public boolean compare_value(Card card){
 
-        public boolean compare_value(Card card){
+        return this.value == card.get_value();
+    }
 
-            return this.value == card.get_value();
-        }
+    public boolean compareTo(Card card){
 
-        public boolean compareTo(Card card){
-
-            return this.suit == card.get_suit() && this.value == card.get_value();
-        }
-
-
+        return this.suit == card.get_suit() && this.value == card.get_value();
+    }
 
 
 //        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {

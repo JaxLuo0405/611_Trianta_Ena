@@ -45,6 +45,7 @@ class TE_Player extends Player{
 	public void fold(){
 		
 	}
+
 	public int get_id(){
 		return this.pid;
 	}
@@ -53,6 +54,14 @@ class TE_Player extends Player{
 	}
 
 
+
+	
+	public void set_bet(int betNum){
+		//if(bet<money)
+		bet = betNum;
+	}
+	
+
 	public void stand(){
 		stand = true;
 	}
@@ -60,6 +69,7 @@ class TE_Player extends Player{
 	public int get_money(){
 		return this.money;
 	}
+
 
 	public int get_bet(){
 		return this.bet;
@@ -86,7 +96,15 @@ class TE_Player extends Player{
 		return null;
 	}
 	
-	public int add_hand(){
+	public void add_card(Card card){
+
+		//todo
+		//add new card to hand
+		hand.add(card);
+		handVal = calc_hand();
+	}
+	
+	public int calc_hand(){
 		int totNum = 0;
 		int aceFlag = 0;
 		Card card;
