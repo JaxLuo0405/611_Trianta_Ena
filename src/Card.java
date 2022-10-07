@@ -14,8 +14,11 @@ import java.util.*;
 
         public Card(char newSuit, String newName) throws InvalidCardValueNameException, InvalidCardSuitException {
             String[] values= new String[]{"Ace", "Two", "Three" , "Four" , "Five" , "Six" , "Seven", "Eight" , "Nine", "Ten" ,"Jack","Queen","King"};
-            List<String> valuesList = new ArrayList<>(Arrays.asList(values));
-            if (valuesList.contains(newName)) {
+            List<String> valuesList = new ArrayList<String>(Arrays.asList(values));
+//            System.out.println(values);
+//            System.out.println(valuesList);
+//            System.out.println(valuesList.contains("Two"));
+            if (!valuesList.contains(newName)) {
                 throw new InvalidCardValueNameException(newName);
             } else {
 
@@ -104,10 +107,31 @@ import java.util.*;
 
         return this.suit;
     }
-        public String toString() {
+    public String toString() {return get_suit_name() + " " + get_name();}
 
-            return get_suit_name() + " " + get_value();
+
+        public boolean compare_suit(Card card){
+
+            return this.suit == card.get_suit();
 
         }
+
+        public boolean compare_value(Card card){
+
+            return this.value == card.get_value();
+        }
+
+        public boolean compareTo(Card card){
+
+            return this.suit == card.get_suit() && this.value == card.get_value();
+        }
+
+
+
+
+//        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
+//            Card jax = new Card('H',"Ace");
+//            System.out.println(jax);
+//        }
 
 }
