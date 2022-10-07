@@ -32,13 +32,17 @@ class TE_Player extends Player{
 		hand = new ArrayList<>();
 	}
 	
+	public TE_Player(int pname){
+		this(String.valueOf(pname));
+	}
+	
 	public void set_dealer(){
 		money = (playerNum-1)*100;
 		isDealer = true;
 	}
 	
 	public void fold(){
-		//???
+		
 	}
 	
 	public void stand(){
