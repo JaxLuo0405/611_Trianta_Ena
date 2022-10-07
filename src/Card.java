@@ -107,12 +107,31 @@ import java.util.*;
 
         return this.suit;
     }
-    public String toString() {return get_suit_name() + " " + get_value();}
+    public String toString() {return get_suit_name() + " " + get_name();}
 
 
-        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-            Card jax = new Card('H',"Ace");
-            System.out.println(jax);
+        public boolean compare_suit(Card card){
+
+            return this.suit == card.get_suit();
+
         }
+
+        public boolean compare_value(Card card){
+
+            return this.value == card.get_value();
+        }
+
+        public boolean compareTo(Card card){
+
+            return this.suit == card.get_suit() && this.value == card.get_value();
+        }
+
+
+
+
+//        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
+//            Card jax = new Card('H',"Ace");
+//            System.out.println(jax);
+//        }
 
 }
