@@ -65,7 +65,6 @@ public class Decks extends Exception implements Serializable{// This class is fo
         decks[index1] = decks[index2];
         decks[index2] = hold;
     }
-
     public void shuffle() throws InvalidDeckPositionException {
         Random rn = new Random();
         for (int i = 0; i < 4; i++){
