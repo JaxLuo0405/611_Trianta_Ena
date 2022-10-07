@@ -58,6 +58,10 @@ class TE_Player extends Player{
 		return money;
 	}
 	
+	public int get_handVal(){
+		return handVal;
+	}
+	
 	public void add_card(Card card){
 		//todo
 		//add new card to hand
