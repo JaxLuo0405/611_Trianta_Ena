@@ -1,5 +1,6 @@
 package src;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 //	public choose_dealer(int d){ outside, make player with pid=d dealer, change money
@@ -44,21 +45,59 @@ class TE_Player extends Player{
 	public void fold(){
 		
 	}
+
+	public int get_id(){
+		return this.pid;
+	}
+	public String get_name(){
+		return this.name;
+	}
+
+
+
 	
 	public void set_bet(int betNum){
 		//if(bet<money)
 		bet = betNum;
 	}
 	
+
 	public void stand(){
 		stand = true;
 	}
 	
 	public int get_money(){
-		return money;
+		return this.money;
+	}
+
+
+	public int get_bet(){
+		return this.bet;
+	}
+
+	public void print_hand() {//print hands' cards and values
+		int val = 0;
+
+
+		while (this.hand.size() > val) {
+
+			System.out.println(this.hand.get(val));
+			val++;
+		}
+		System.out.println("Total values:" + " " +this.add_hand());
+
+	}
+
+	public Card new_card(Card card){
+		//todo
+		//add new card to hand
+		hand.add(card);
+		handVal = add_hand();
+		return null;
 	}
 	
 	public void add_card(Card card){
+
 		//todo
 		//add new card to hand
 		hand.add(card);
@@ -81,8 +120,32 @@ class TE_Player extends Player{
 		}
 		return totNum;
 	}
-	
+	public String toString(){
+		if (this.isDealer){
+			String str= "";
+			str += "Player's name: " + this.get_name() + "\n";
+			str += "Player's id: " + this.get_id() + "\n";
+			str += "Player's money: " + this.get_money() + "\n";
+			str += "Player's bet: " + this.get_bet() + "\n";
+			str += "Player's hand: ";
+			this.print_hand();
+			return str;
+		}
+		else{
+			String str= "";
+			str += "Dealer's name: " + this.get_name() + "\n";
+			str += "Dealer's id: " + this.get_id() + "\n";
+			str += "Dealer's money: " + this.get_money() + "\n";
+			str += "Dealer's bet: " + this.get_bet() + "\n";
+			str += "Dealer's hand: ";
+			this.print_hand();
+			return str;
+		}
+
+	}
 	
 	public static void main(String[] args) {
+		TE_Player jax = new TE_Player("Jax");
+		System.out.println(jax);
 	}
 }
