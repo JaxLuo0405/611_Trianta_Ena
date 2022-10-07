@@ -20,8 +20,8 @@ public class Decks extends Exception implements Serializable{// This class is fo
                 decks[count++] = new Card('H', valuesList.get(i));
             }
             for (int i = 0; i <= 12; i++) {
-                decks[count++] = new Card('S', valuesList.get(i - 1));
-                decks[count++] = new Card('S', valuesList.get(i - 1));
+                decks[count++] = new Card('S', valuesList.get(i));
+                decks[count++] = new Card('S', valuesList.get(i));
             }
             for (int i = 0; i <= 12; i++) {
                 decks[count++] = new Card('C', valuesList.get(i));
