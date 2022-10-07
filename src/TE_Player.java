@@ -96,6 +96,10 @@ class TE_Player extends Player{
 		return null;
 	}
 	
+	public int get_handVal(){
+		return handVal;
+	}
+	
 	public void add_card(Card card){
 
 		//todo

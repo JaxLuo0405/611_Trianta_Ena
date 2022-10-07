@@ -19,21 +19,39 @@ class Trianta_Ena implements Game {
 	//default card faces up
 	public void start_deal(){
 		decks.shuffle();
-		for(int p=0; p<player.length; p++){
+		for(int p=0; p<players.length; p++){
 			if(p==dealerInd)
-				player[p].add_card(decks.nextCard());
+				players[p].add_card(decks.nextCard());
 			else
-				player[p].add_card(decks.nextCard(false));
+				players[p].add_card(decks.nextCard(false));
 		}
 	}
 	
 	public void ask_bet(){
 		int betNum;
-		for(int p=0; p<player.length; p++){
+		for(int p=0; p<players.length; p++){
 			if(p==dealerInd)
 				continue;
 			betNum = InOut.ask_player_bet();
+			if(betNum==0){ //fold
+				//table.remove_player(p);
+				continue;
+			}
 			players[p].set_bet(betNum);
+		}
+	}
+	
+	public void deal_two_cards(){
+		Player player;
+		for(int p=0; p<players.length; p++){
+			if(p==dealerInd)
+				continue;
+			player = players[p];
+			player.add_card(decks.nextCard());
+			player.add_card(decks.nextCard());
+			if(player.get_handVal()>31)
+				//pay banker and quit
+				return;
 		}
 	}
 	
@@ -49,11 +67,13 @@ class Trianta_Ena implements Game {
 		//print table
 		//InOut.print_table(table){}
 		
-		ask_bet();
 		//ask player for bets: bet or fold
+		ask_bet();
 		
 		//once everyone betted: player receive 2 cards face up
 			//if bust --> pay banker, quit
+		deal_two_cards();
+		
 		//then start turn:
 			//each player can hit or stand
 			//if hit --> if bust --> pay banker, quit
@@ -71,6 +91,7 @@ class Trianta_Ena implements Game {
 		for (int i=0;i<playerNum;i++) {
 			players[i] = new TE_Player(i);
 		}
+		//table = new Table(players);
 		
 		//get dealer index
 		dealerInd = InOut.get_dealer();

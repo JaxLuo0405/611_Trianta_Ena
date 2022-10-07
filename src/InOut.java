@@ -22,7 +22,10 @@ class InOut{
 	
 	public static int ask_player_bet(){
 		Scanner scan = new Scanner(System.in);
-		//System.out.println("Would you like to bet or fold?");
+		System.out.println("Would you like to bet or fold? (b/f)");
+		String betOrFold = scan.next();
+		if(betOrFold=="f")
+			return 0;
 		System.out.println("How much would you like to bet?");
 		return scan.nextInt();
 	}

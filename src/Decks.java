@@ -81,8 +81,6 @@ public class Decks extends Exception implements Serializable{// This class is fo
         return decks[index];
     }
 
-
-
     public boolean compareTo(Decks otherDeck) throws InvalidDeckPositionException {
         for (int i=0; i < decks.length; i++){
             if (! decks[i].compareTo(otherDeck.get_card(i)) ) {
