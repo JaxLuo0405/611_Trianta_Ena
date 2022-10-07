@@ -16,6 +16,18 @@ class InOut{
 		return scan.nextInt();
 	}
 	
+	public static void start_round(int roundNum){
+		System.out.println("Round "+roundNum+" starts!");
+	}
+	
+	public static int ask_player_bet(){
+		Scanner scan = new Scanner(System.in);
+		//System.out.println("Would you like to bet or fold?");
+		System.out.println("How much would you like to bet?");
+		return scan.nextInt();
+	}
+	
+	//public static void print_table(table)
 	
 	public static void main(String[] args) {
 	}

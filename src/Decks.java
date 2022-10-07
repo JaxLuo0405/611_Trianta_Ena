@@ -34,6 +34,7 @@ public class Decks extends Exception implements Serializable{// This class is fo
         } catch (InvalidCardValueNameException | InvalidCardSuitException exp1) {
 
         }
+        nextCardIndex = 0;
     }
     
     
@@ -91,12 +92,17 @@ public class Decks extends Exception implements Serializable{// This class is fo
         return true;
     }
 
-    public Card nextCard() {
-
+    public Card next_card(boolean isShow) {
         if (nextCardIndex < 0 || nextCardIndex > 103) {
             System.out.println("Future exception goes here");
         }
-        return decks[nextCardIndex++];
+        Card nextCard = decks[nextCardIndex++];
+        nextCard.set_show(isShow);
+        return nextCard;
+    }
+    
+    public Card next_card() {
+        return next_card(true);
     }
 
 //    public static void main(String[] args) throws InvalidDeckPositionException {
