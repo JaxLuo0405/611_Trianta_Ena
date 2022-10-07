@@ -45,6 +45,11 @@ class TE_Player extends Player{
 		
 	}
 	
+	public void set_bet(int betNum){
+		//if(bet<money)
+		bet = betNum;
+	}
+	
 	public void stand(){
 		stand = true;
 	}
@@ -53,15 +58,14 @@ class TE_Player extends Player{
 		return money;
 	}
 	
-	public Card new_card(Card card){
+	public void add_card(Card card){
 		//todo
 		//add new card to hand
 		hand.add(card);
-		handVal = add_hand();
-		return null;
+		handVal = calc_hand();
 	}
 	
-	public int add_hand(){
+	public int calc_hand(){
 		int totNum = 0;
 		int aceFlag = 0;
 		Card card;
