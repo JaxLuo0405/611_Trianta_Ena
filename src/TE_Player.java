@@ -104,7 +104,7 @@ class TE_Player extends Player{
 	}
 
 	
-	public String toString()throws InvalidCardSuitException, InvalidCardValueNameException {
+	public String toString() {
 		String string = "";
 
 		String start_str = "";
@@ -125,7 +125,7 @@ class TE_Player extends Player{
 	}
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
 
 		TE_Player jax = new TE_Player("Jax");
 
