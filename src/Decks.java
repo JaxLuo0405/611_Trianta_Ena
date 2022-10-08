@@ -1,5 +1,4 @@
 package src;
-
 import java.io.Serializable;
 import java.util.*;
 import java.util.Random;
@@ -46,7 +45,6 @@ public class Decks extends Exception implements Serializable{// This class is fo
     
     
     public String toString(){
-
         String str = "";
 
         for (int i = 0; i < decks.length; i++) {
@@ -56,15 +54,15 @@ public class Decks extends Exception implements Serializable{// This class is fo
         return str;
     }
 
+    //helper function for shuffle()
     private void swap_cards(int index1, int index2) throws InvalidDeckPositionException {// server for randomized process
-        Card hold;
-
         is_index_good(index1);
         is_index_good(index2);
-        hold = decks[index1];
+        Card hold = decks[index1];
         decks[index1] = decks[index2];
         decks[index2] = hold;
     }
+
     public void shuffle() throws InvalidDeckPositionException {
         Random rn = new Random();
         for (int i = 0; i < 4; i++){
@@ -75,7 +73,7 @@ public class Decks extends Exception implements Serializable{// This class is fo
         nextCardIndex = 0;
     }
 
-    public Card get_card(int index) throws InvalidDeckPositionException{
+    public Card get_card(int index) throws InvalidDeckPositionException {
         is_index_good(index);
         return decks[index];
     }

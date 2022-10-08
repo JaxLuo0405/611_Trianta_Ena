@@ -1,5 +1,6 @@
 package src;
 import java.util.*;
+
 class TE_Player extends Player{
 	private int playerNum;
 	private String name;
@@ -11,7 +12,7 @@ class TE_Player extends Player{
 	private boolean stand = false;
 	private ArrayList<Card> hand;
 	private int handVal;
-
+	
 	public TE_Player(String pname){ //normal player
 		this.money = 100;
 		this.winNum = 0;
@@ -20,50 +21,42 @@ class TE_Player extends Player{
 		this.playerNum++;
 		this.hand = new ArrayList<>();
 	}
-
+	
 	public TE_Player(int pname){
 		this(String.valueOf(pname));
 	}
-
+	
 	public void set_dealer(){
 		this.money = (playerNum-1)*100;
 		this.isDealer = true;
 	}
-
-	public void fold(){
-
-	}
-
+	
 	public int get_id(){
 		return this.pid;
 	}
+	
 	public String get_name(){
 		return this.name;
 	}
-
-
-
-
+	
 	public void set_bet(int betNum){
 		//if(bet<money)
 		this.bet = betNum;
 	}
-
-
+	
+	
 	public void stand(){
 		stand = true;
 	}
-
+	
 	public int get_money(){
 		return this.money;
 	}
-
-
+	
+	
 	public int get_bet(){
 		return this.bet;
 	}
-
-
 
 	public Card new_card(Card card){
 		//todo
@@ -72,19 +65,18 @@ class TE_Player extends Player{
 		handVal = calc_hand();
 		return null;
 	}
-
+	
 	public int get_handVal(){
 		return handVal;
 	}
-
+	
 	public void add_card(Card card){
-
 		//todo
 		//add new card to hand
 		hand.add(card);
 		handVal = calc_hand();
 	}
-
+	
 	public int calc_hand(){
 		int totNum = 0;
 		int aceFlag = 0;
@@ -101,6 +93,7 @@ class TE_Player extends Player{
 		}
 		return totNum;
 	}
+
 	public String get_hand(){
 		String str = "";
 		for(int i = 0; i < this.hand.size(); i++){
@@ -109,13 +102,17 @@ class TE_Player extends Player{
 		}
 		return str;
 	}
-	public String toString(){
+
+	
+	public String toString()throws InvalidCardSuitException, InvalidCardValueNameException {
 		String string = "";
+
 		String start_str = "";
 		if(this.isDealer)
 			start_str = "Player's ";
 		else
 			start_str = "Dealer's ";
+
 
 		string += start_str+"name: " + this.get_name() + "\n";
 		string += start_str+"id: " + this.get_id() + "\n";
@@ -127,9 +124,9 @@ class TE_Player extends Player{
 		return string;
 	}
 
+	
+	public static void main(String[] args) {
 
-
-	public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
 		TE_Player jax = new TE_Player("Jax");
 
 		jax.add_card(new Card('H', "Two"));
@@ -137,4 +134,3 @@ class TE_Player extends Player{
 		System.out.println(jax);
 	}
 }
-
