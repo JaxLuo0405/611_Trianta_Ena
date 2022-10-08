@@ -73,7 +73,7 @@ public class Decks extends Exception implements Serializable{// This class is fo
         nextCardIndex = 0;
     }
 
-    public Card get_card(int index) throws InvalidDeckPositionException{
+    public Card get_card(int index) throws InvalidDeckPositionException {
         is_index_good(index);
         return decks[index];
     }

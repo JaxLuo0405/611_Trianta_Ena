@@ -17,10 +17,8 @@ class Trianta_Ena implements Game {
 	
 	//one card each player, face down. dealer one card face up
 	// (default: card faces up)
-	public void start_deal(){
-		try{decks.shuffle();} catch(InvalidDeckPositionException E){ 
-			//throw new InvalidDeckPositionException();
-		}
+	public void start_deal() throws InvalidDeckPositionException{
+		decks.shuffle();
 		for(int p=0; p<players.length; p++){
 			if(p==dealerId)
 				players[p].add_card(decks.next_card());
@@ -57,7 +55,7 @@ class Trianta_Ena implements Game {
 		}
 	}
 	
-	public void one_round(int roundInt){
+	public void one_round(int roundInt) throws InvalidDeckPositionException{
 		InOut.start_round(roundInt);
 		
 		table = new Table(players);

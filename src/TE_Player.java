@@ -31,19 +31,13 @@ class TE_Player extends Player{
 		this.isDealer = true;
 	}
 	
-	public void fold(){
-		
-	}
-	
 	public int get_id(){
 		return this.pid;
 	}
+	
 	public String get_name(){
 		return this.name;
 	}
-	
-	
-	
 	
 	public void set_bet(int betNum){
 		//if(bet<money)
@@ -106,29 +100,21 @@ class TE_Player extends Player{
 	}
 	
 	public String toString(){
-		if (this.isDealer){
-			String str= "";
-			str += "Player's name: " + this.get_name() + "\n";
-			str += "Player's id: " + this.get_id() + "\n";
-			str += "Player's money: " + this.get_money() + "\n";
-			str += "Player's bet: " + this.get_bet() + "\n";
-			str += "Player's hand: " + this.get_bet() + "\n";
-			str += "Player's hand total values: " + this.get_handVal() + "\n";
-			
-			return str;
-		}
-		else{
-			String str= "";
-			str += "Dealer's name: " + this.get_name() + "\n";
-			str += "Dealer's id: " + this.get_id() + "\n";
-			str += "Dealer's money: " + this.get_money() + "\n";
-			str += "Dealer's bet: " + this.get_bet() + "\n";
-			str += "Dealer's hand: " + this.get_bet() + "\n";
-			str += "Dealer's hand total values: " + this.get_handVal() + "\n";
-			
-			return str;
-		}
+		String str = "";
+		String start_str = "";
+		if(this.isDealer)
+			start_str = "Player's ";
+		else
+			start_str = "Dealer's ";
 		
+		str += start_str+"name: " + this.get_name() + "\n";
+		str += start_str+"id: " + this.get_id() + "\n";
+		str += start_str+"money: " + this.get_money() + "\n";
+		str += start_str+"bet: " + this.get_bet() + "\n";
+		str += start_str+"hand: " + this.get_bet() + "\n";
+		str += start_str+"hand total values: " + this.get_handVal() + "\n";
+		
+		return str;
 	}
 	
 	public static void main(String[] args) {
