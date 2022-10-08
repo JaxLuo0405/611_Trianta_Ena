@@ -101,7 +101,7 @@ class Trianta_Ena implements Game {
 		
 		int roundNum = 0;
 		//start round
-		one_round(roundNum++);
+		//one_round(roundNum++);
 		
 	}
 	
