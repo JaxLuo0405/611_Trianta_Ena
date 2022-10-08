@@ -57,12 +57,7 @@ class TE_Player extends Player{
 	public int get_bet(){
 		return this.bet;
 	}
-	
-	public String get_hand(){
-		String str = "";
-		return str;
-	}
-	
+
 	public Card new_card(Card card){
 		//todo
 		//add new card to hand
@@ -98,27 +93,44 @@ class TE_Player extends Player{
 		}
 		return totNum;
 	}
-	
-	public String toString(){
+
+	public String get_hand(){
 		String str = "";
+		for(int i = 0; i < this.hand.size(); i++){
+			str += this.hand.get(i).toString() + "\n";
+
+		}
+		return str;
+	}
+
+	
+	public String toString()throws InvalidCardSuitException, InvalidCardValueNameException {
+		String string = "";
+
 		String start_str = "";
 		if(this.isDealer)
 			start_str = "Player's ";
 		else
 			start_str = "Dealer's ";
-		
-		str += start_str+"name: " + this.get_name() + "\n";
-		str += start_str+"id: " + this.get_id() + "\n";
-		str += start_str+"money: " + this.get_money() + "\n";
-		str += start_str+"bet: " + this.get_bet() + "\n";
-		str += start_str+"hand: " + this.get_bet() + "\n";
-		str += start_str+"hand total values: " + this.get_handVal() + "\n";
-		
-		return str;
+
+
+		string += start_str+"name: " + this.get_name() + "\n";
+		string += start_str+"id: " + this.get_id() + "\n";
+		string += start_str+"money: " + this.get_money() + "\n";
+		string += start_str+"bet: " + this.get_bet() + "\n";
+		string += start_str+"hand: \n \n" + this.get_hand() + "\n";
+		string += start_str+"hand total values: " + this.get_handVal() + "\n";
+
+		return string;
 	}
+
 	
 	public static void main(String[] args) {
+
 		TE_Player jax = new TE_Player("Jax");
+
+		jax.add_card(new Card('H', "Two"));
+		jax.add_card(new Card('H', "Three"));
 		System.out.println(jax);
 	}
 }
