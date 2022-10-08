@@ -63,10 +63,7 @@ class TE_Player extends Player{
 		return this.bet;
 	}
 
-	public String get_hand(){
-		String str = "";
-		return str;
-	}
+
 
 	public Card new_card(Card card){
 		//todo
@@ -104,34 +101,39 @@ class TE_Player extends Player{
 		}
 		return totNum;
 	}
+	public String get_hand(){
+		String str = "";
+		for(int i = 0; i < this.hand.size(); i++){
+			str += this.hand.get(i).toString() + "\n";
+
+		}
+		return str;
+	}
 	public String toString(){
-		if (this.isDealer){
-			String str= "";
-			str += "Player's name: " + this.get_name() + "\n";
-			str += "Player's id: " + this.get_id() + "\n";
-			str += "Player's money: " + this.get_money() + "\n";
-			str += "Player's bet: " + this.get_bet() + "\n";
-			str += "Player's hand: " + this.get_bet() + "\n";
-			str += "Player's hand total values: " + this.get_handVal() + "\n";
+		String string = "";
+		String start_str = "";
+		if(this.isDealer)
+			start_str = "Player's ";
+		else
+			start_str = "Dealer's ";
 
-			return str;
-		}
-		else{
-			String str= "";
-			str += "Dealer's name: " + this.get_name() + "\n";
-			str += "Dealer's id: " + this.get_id() + "\n";
-			str += "Dealer's money: " + this.get_money() + "\n";
-			str += "Dealer's bet: " + this.get_bet() + "\n";
-			str += "Dealer's hand: " + this.get_bet() + "\n";
-			str += "Dealer's hand total values: " + this.get_handVal() + "\n";
+		string += start_str+"name: " + this.get_name() + "\n";
+		string += start_str+"id: " + this.get_id() + "\n";
+		string += start_str+"money: " + this.get_money() + "\n";
+		string += start_str+"bet: " + this.get_bet() + "\n";
+		string += start_str+"hand: \n \n" + this.get_hand() + "\n";
+		string += start_str+"hand total values: " + this.get_handVal() + "\n";
 
-			return str;
-		}
-
+		return string;
 	}
 
-	public static void main(String[] args) {
+
+
+	public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
 		TE_Player jax = new TE_Player("Jax");
+
+		jax.add_card(new Card('H', "Two"));
+		jax.add_card(new Card('H', "Three"));
 		System.out.println(jax);
 	}
 }
