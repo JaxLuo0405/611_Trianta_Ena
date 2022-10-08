@@ -1,6 +1,6 @@
 package src;
-
 import java.util.*;
+
 public class Card {
     private char suit;
     private int value;
@@ -47,7 +47,6 @@ public class Card {
 
 
     public String get_suit_name() {
-
         String suit;
 
         if (this.suit == 'H') {
@@ -103,12 +102,10 @@ public class Card {
 
 
     public int get_value() {
-
         return this.value;
     }
 
     public String get_name() {
-
         return this.name;
     }
 
@@ -128,12 +125,10 @@ public class Card {
     }
 
     public boolean compare_value(Card card){
-
         return this.value == card.get_value();
     }
 
     public boolean compareTo(Card card){
-
         return this.suit == card.get_suit() && this.value == card.get_value();
     }
 
