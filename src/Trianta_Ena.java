@@ -41,13 +41,12 @@ class Trianta_Ena implements Game {
 			if(!anotherRound)
 				break;
 
-			this.change_dealer();
 			for(TE_Player player: players){
-//				player.clear();
+				player.clear();
 			}
-
-
+			this.change_dealer();
 		}
+
 
 	}
 	public static TE_Player[] getSortedArray(TE_Player[] playerArray, Comparator<TE_Player> comparator) {
@@ -64,6 +63,7 @@ class Trianta_Ena implements Game {
 			boolean decision = InOut.ask_to_change_dealer(player.get_name());
 			if(decision){
 				this.dealer = player;
+
 				System.out.println("Dealer changed to "+player.get_name());
 				break;
 			}

@@ -8,12 +8,15 @@ class Table {
 	
 	public Table(TE_Player[] players, TE_Player dealer){
 		decks = new Decks();
-		this.curPlayers = new ArrayList<>();
-		for(int i=0; i<players.length; i++){
-			(this.curPlayers).add(players[i]);
-		}
 		this.dealer = dealer;
-		this.dealer.set_dealer();
+		this.curPlayers = new ArrayList<>();
+		int totMoney = 0;
+		for(TE_Player player:players){
+			(this.curPlayers).add(player);
+			if(!player.equals(dealer))
+				totMoney+=player.get_money();
+		}
+		this.dealer.set_dealer(totMoney);
 	}
 	
 	//get players on table as an array

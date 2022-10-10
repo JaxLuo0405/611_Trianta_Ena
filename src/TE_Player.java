@@ -2,32 +2,38 @@ package src;
 import java.util.*;
 
 class TE_Player extends Player{
-	private int playerNum;
+	private static int playerNum;
 	private String name;
 	private int winNum;
-	public boolean isDealer = false;
+	private boolean isDealer = false;
 	private int pid;
 	private int money;
 	private int bet;
 	private boolean stand = false;
 	private ArrayList<Card> hand;
 	private int handVal;
-	
+	public void clear(){
+		this.handVal = 0;
+		this.bet = 0;
+		this.hand = new ArrayList<Card>();
+		this.stand = false;
+		this.isDealer = false;
+	}
 	public TE_Player(String pname){ //normal player
 		this.money = 100;
 		this.winNum = 0;
 		this.name = pname;
 		this.pid = playerNum;
 		this.playerNum++;
-		this.hand = new ArrayList<>();
+		this.hand = new ArrayList<Card>();
 	}
 	
 	public TE_Player(int pname){
 		this(String.valueOf(pname));
 	}
-	
-	public void set_dealer(){
-		this.money = (playerNum-1)*100;
+
+	public void set_dealer(int moneyAmount){
+		this.money = moneyAmount;
 		this.isDealer = true;
 	}
 	
@@ -132,7 +138,13 @@ class TE_Player extends Player{
 			return true;
 		return false;
 	}
-	
+
+	public boolean equals(TE_Player otherPlayer){
+		if(this.pid==otherPlayer.get_id())
+			return true;
+		return false;
+	}
+
 	public String toString() {
 		String string = "";
 		String start_str;

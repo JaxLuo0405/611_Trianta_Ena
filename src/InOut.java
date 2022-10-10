@@ -147,10 +147,14 @@ class InOut {
 			String userInputLine = scanner.nextLine();
 			try {
 
-				if (userInputLine.equals("y"))
+				if (userInputLine.equals("y")) {
+					System.out.println("Perfect! Let's design our new dealer!");
 					return true;
-				if (userInputLine.equals("n"))
+				}
+				if (userInputLine.equals("n")) {
+					System.out.println("End of Trianta Ena. Bye!");
 					return false;
+				}
 				else {
 					System.out.println("Incorrect input of y/n please enter again");
 
