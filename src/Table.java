@@ -4,31 +4,32 @@ import java.util.*;
 class Table {
 	private ArrayList<TE_Player> curPlayers;
 	private TE_Player dealer;
-	private int dealerId;
 	private Decks decks;
 	
-	public Table(TE_Player[] players){
+	public Table(TE_Player[] players, TE_Player dealer){
 		decks = new Decks();
 		this.curPlayers = new ArrayList<>();
 		for(int i=0; i<players.length; i++){
 			(this.curPlayers).add(players[i]);
 		}
+		this.dealer = dealer;
+		this.dealer.set_dealer();
 	}
 	
 	//get players on table as an array
 	public TE_Player[] get_players(){
-		return (TE_Player[]) curPlayers.toArray();
+		return (TE_Player[]) this.curPlayers.toArray();
 	}
 	
 	// one card each player, face down. dealer one card face up
 	// (default: card faces up)
 	public void start_deal() throws InvalidDeckPositionException{
-		decks.shuffle();
-		for(int p=0; p<curPlayers.size(); p++){
-			if(curPlayers.get(p).get_id()==dealerId) //face down
-				curPlayers.get(p).add_card(decks.next_card());
+		this.decks.shuffle();
+		for(TE_Player player : this.curPlayers){
+			if(player.get_id()==this.dealer.get_id()) //face down
+				player.add_card(this.decks.next_card());
 			else
-				curPlayers.get(p).add_card(decks.next_card(false));
+				player.add_card(this.decks.next_card(false));
 		}
 	}
 	
@@ -146,10 +147,7 @@ class Table {
 	public void one_round(int roundInt) throws InvalidDeckPositionException{
 		InOut.start_round(roundInt);
 		
-		//get dealer index
-		this.dealerId = InOut.get_dealer(curPlayers.size());
-		this.dealer = this.curPlayers.get(this.dealerId);
-		this.curPlayers.get(this.dealerId).set_dealer();
+
 		
 		//print everyones money
 		//InOut.print_table(table){}

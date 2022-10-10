@@ -134,9 +134,61 @@ class InOut {
 
 			}
 		}
-		return true; // doomy return
+		return true; // dummy return
 
 	}
+
+	public static boolean one_more_round(){
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Would you like to play one more round?(y/n)");
+		boolean correctInput = false;
+		while (!correctInput) {
+			String userInputLine = scanner.nextLine();
+			try {
+
+				if (userInputLine.equals("y"))
+					return true;
+				if (userInputLine.equals("n"))
+					return false;
+				else {
+					System.out.println("Incorrect input of y/n please enter again");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Please enter a correct y/n");
+
+			}
+		}
+		return true; // dummy return
+
+	}
+
+	public static boolean ask_to_change_dealer(String pname){
+		Scanner scanner = new Scanner(System.in);
+		System.out.println( "Player "+ pname + ", would you like to become the new dealer?(y/n)");
+		boolean correctInput = false;
+		while (!correctInput) {
+			String userInputLine = scanner.nextLine();
+			try {
+
+				if (userInputLine.equals("y"))
+					return true;
+				if (userInputLine.equals("n"))
+					return false;
+				else {
+					System.out.println("Incorrect input of y/n please enter again");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Please enter a correct y/n");
+
+			}
+		}
+		return true; // dummy return
+
+	}
+
 
 	public static void main(String[] args) {
 		InOut test = new InOut();
