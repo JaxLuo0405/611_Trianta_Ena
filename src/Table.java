@@ -2,7 +2,7 @@ package src;
 import java.util.*;
 
 class Table {
-	private ArrayList<TE_Player> curPlayers;
+	private ArrayList<TE_Player> curPlayers; //only players, no dealer
 	private TE_Player dealer;
 	private Decks decks;
 	
@@ -11,10 +11,11 @@ class Table {
 		this.dealer = dealer;
 		this.curPlayers = new ArrayList<>();
 		int totMoney = 0;
-		for(TE_Player player:players){
+		for(TE_Player player:players) {
+			if (player.equals(dealer))
+				continue;
+			totMoney += player.get_money();
 			(this.curPlayers).add(player);
-			if(!player.equals(dealer))
-				totMoney+=player.get_money();
 		}
 		this.dealer.set_dealer(totMoney);
 	}
@@ -27,20 +28,20 @@ class Table {
 	// one card each player, face down. dealer one card face up
 	// (default: card faces up)
 	public void start_deal() throws InvalidDeckPositionException{
+		System.out.println("Start dealing the first card to each player.");
 		this.decks.shuffle();
 		for(TE_Player player : this.curPlayers){
-			if(player.get_id()==this.dealer.get_id()) //face down
-				player.add_card(this.decks.next_card());
-			else
-				player.add_card(this.decks.next_card(false));
+			player.add_card(this.decks.next_card(false)); //face down
 		}
+		dealer.add_card(this.decks.next_card()); //face up
 	}
 	
 	public void ask_bet(){
+		System.out.println(dealer);
 		int betNum;
 		ArrayList<TE_Player> folders = new ArrayList<>();
 		for(TE_Player player:this.curPlayers){
-			betNum = InOut.ask_player_bet(player.get_money());
+			betNum = InOut.ask_player_bet(player);
 			if(betNum==0) //fold
 				folders.add(player);
 			player.set_bet(betNum);
@@ -49,6 +50,7 @@ class Table {
 	}
 	
 	public void deal_two_cards(){
+		System.out.println("Giving two more cards to each player who has bet.");
 		TE_Player player;
 		for(int p=0; p<this.curPlayers.size(); p++){
 			player = this.curPlayers.get(p);
@@ -73,15 +75,20 @@ class Table {
 	public boolean turn(TE_Player player){
 		boolean hit;
 		while(!player.get_stand()){
-			hit = InOut.hit_or_stand();
+			hit = InOut.hit_or_stand(player);
 			if(!hit){
 				player.stand();
 				continue;
 			}
 			player.add_card(this.decks.next_card());
-			if(player.get_handVal()>31)
+			if(player.get_handVal()>31){
+				System.out.println("You busted. LOSER.");
+				InOut.see_hand(player);
+				System.out.println("-------------------------------------");
 				return false;
+			}
 		}
+		System.out.println("-------------------------------------");
 		return true;
 	}
 	
@@ -96,6 +103,7 @@ class Table {
 	}
 	
 	public void dealer_turn(){
+		System.out.println("Dealer's turn!");
 		//dealer reveal face down card
 		for(TE_Player player : this.curPlayers){
 			player.show_card();
@@ -104,6 +112,8 @@ class Table {
 		while(this.dealer.get_handVal()<27){
 			this.dealer.add_card(this.decks.next_card());
 		}
+		System.out.println(dealer);
+		System.out.println(dealer.get_handVal());
 	}
 	
 	//@return: winners as an arraylist
@@ -144,39 +154,48 @@ class Table {
 	
 	// to print the table
 	public String toString(){
-		return null;
+		System.out.println("Here is the current table situation:");
+		System.out.println("-------------------------------------");
+		String str = "";
+		str += this.dealer.toString() + "\n";
+		for(TE_Player player:this.curPlayers){
+			str += player.toString()+"\n";
+		}
+		str += "-------------------------------------";
+		return str;
 	}
 	
 	public void one_round(int roundInt) throws InvalidDeckPositionException{
 		InOut.start_round(roundInt);
-		
 
-		
-		//print everyones money
+
+		System.out.println(this);
 		//InOut.print_table(table){}
 		
 		//start dealng with one card each player, face down. dealer one card face up
 		start_deal();
-		this.curPlayers.remove(this.dealer);
-		
-		//print table
-		//InOut.print_table(table){}
-		
+
 		//ask player for bets: bet or fold
 		ask_bet();
-		
+
 		//once everyone betted: player receive 2 cards face up
 		deal_two_cards();
+
+		System.out.println(this);
+
 		
 		//then start turn:
 			//each player can hit or stand
 			//if hit --> if bust --> pay banker, quit
 			//after this method, all players stand or lose
 		take_turns();
+
+
 		
 		//dealer reveal face down card???
 			//dealer gets hit until their hand >= 27
-		dealer_turn();
+		if(curPlayers.size()>0)
+			dealer_turn();
 			
 		//return to TE, the players with hand value > dealer but <= 31 win
 			//check_winner

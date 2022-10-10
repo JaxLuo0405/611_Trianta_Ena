@@ -12,7 +12,7 @@ class InOut {
 		boolean correctInput = false;
 		int result = 0;
 		while (!correctInput) {
-			String userInputLine = scanner.nextLine();
+			String userInputLine = scanner.next();
 			try {
 				int userInput = Integer.parseInt(userInputLine);
 				result = userInput;
@@ -38,7 +38,7 @@ class InOut {
 		boolean correctInput = false;
 		int result = 0;
 		while (!correctInput) {
-			String userInputLine = scanner.nextLine();
+			String userInputLine = scanner.next();
 			try {
 				int userInput = Integer.parseInt(userInputLine);
 				result = userInput;
@@ -62,18 +62,25 @@ class InOut {
 		System.out.println("Round " + roundNum + " starts!");
 	}
 
+	public static void see_hand(TE_Player player){
+		System.out.println("\nHere is your current hand, " + player.get_name() + ":");
+		System.out.println(player.get_hand_player());
+		System.out.println("Your current hand value is: "+player.get_handVal());
+	}
 
-	public static int ask_player_bet(int currentMoney) {
-
-//		return result1;
+	public static int ask_player_bet(TE_Player player) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Would you like to bet or fold? (b/f)");
+		see_hand(player);
+		System.out.println("Here is your current hand values: "+ player.get_handVal());
+		System.out.println("Here is your current money: " + player.get_money());
+		System.out.println("Here is your current bet: " + player.get_bet());
+		System.out.println(player.get_name()+", would you like to bet or fold? (b/f)");
 		boolean correctInput = false;
 		boolean correctInput2 = false;
 		int result = 0;
 
 		while (!correctInput) {
-			String userInputLine = scanner.nextLine();
+			String userInputLine = scanner.next();
 			try {
 
 				if (userInputLine.equals("f"))
@@ -91,10 +98,10 @@ class InOut {
 		}
 		System.out.println("How much would you like to bet?");
 		while (!correctInput2) {
-			String userInputLine = scanner.nextLine();
+			String userInputLine = scanner.next();
 			try {
 				result = Integer.parseInt(userInputLine);
-				if (result <= currentMoney) {
+				if (result <= player.get_money()) {
 					correctInput2 = true;
 				} else {
 					System.out.println("Incorrect input of bet, please enter again");
@@ -113,12 +120,13 @@ class InOut {
 	}
 
 	//@return: boolean hit
-	public static boolean hit_or_stand() {
+	public static boolean hit_or_stand(TE_Player player) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Would you like to hit or stand? (h/s)");
+		see_hand(player);
+		System.out.println(player.get_name()+", would you like to hit or stand? (h/s)");
 		boolean correctInput = false;
 		while (!correctInput) {
-			String userInputLine = scanner.nextLine();
+			String userInputLine = scanner.next();
 			try {
 
 				if (userInputLine.equals("h"))
@@ -144,11 +152,11 @@ class InOut {
 		System.out.println("Would you like to play one more round?(y/n)");
 		boolean correctInput = false;
 		while (!correctInput) {
-			String userInputLine = scanner.nextLine();
+			String userInputLine = scanner.next();
 			try {
 
 				if (userInputLine.equals("y")) {
-					System.out.println("Perfect! Let's design our new dealer!");
+					System.out.println("Perfect! Let's designate our new dealer!");
 					return true;
 				}
 				if (userInputLine.equals("n")) {
@@ -173,7 +181,7 @@ class InOut {
 		System.out.println( "Player "+ pname + ", would you like to become the new dealer?(y/n)");
 		boolean correctInput = false;
 		while (!correctInput) {
-			String userInputLine = scanner.nextLine();
+			String userInputLine = scanner.next();
 			try {
 
 				if (userInputLine.equals("y"))
@@ -199,6 +207,6 @@ class InOut {
 		//test.num_players();
 		//test.get_dealer(35);
 		//test.ask_player_bet(100);
-		test.hit_or_stand();
+		//test.hit_or_stand();
 	}
 }
