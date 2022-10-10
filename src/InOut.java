@@ -2,10 +2,10 @@ package src;
 
 import java.util.*;
 
-class InOut{
+class InOut {
 
 
-	public static int num_players(){
+	public static int num_players() {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Welcome to play Trianta Ena! Please enter the number of players (including dealer):");
@@ -16,7 +16,7 @@ class InOut{
 			try {
 				int userInput = Integer.parseInt(userInputLine);
 				result = userInput;
-				if (result > 2 && result < 35 ) {
+				if (result > 2 && result < 35) {
 					correctInput = true;
 				} else {
 					System.out.println("Incorrect input, please enter again");
@@ -30,8 +30,8 @@ class InOut{
 
 		return result;
 	}
-	
-	public static int get_dealer(int playerNum){
+
+	public static int get_dealer(int playerNum) {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Which player index would you like to be the dealer?");
@@ -40,9 +40,9 @@ class InOut{
 		while (!correctInput) {
 			String userInputLine = scanner.nextLine();
 			try {
-				int userInput =Integer.parseInt(userInputLine);
+				int userInput = Integer.parseInt(userInputLine);
 				result = userInput;
-				if (result < playerNum && result >= 0 ) {
+				if (result < playerNum && result >= 0) {
 					correctInput = true;
 				} else {
 					System.out.println("Incorrect input, please enter again");
@@ -57,41 +57,92 @@ class InOut{
 		return result;
 
 	}
-	
-	public static void start_round(int roundNum){
-		System.out.println("Round "+roundNum+" starts!");
+
+	public static void start_round(int roundNum) {
+		System.out.println("Round " + roundNum + " starts!");
 	}
 
 
-	public static int ask_player_bet(){
+	public static int ask_player_bet(int currentMoney) {
 
-		Scanner scan = new Scanner(System.in);
+//		return result1;
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Would you like to bet or fold? (b/f)");
-		String betOrFold = scan.next();
-		if(betOrFold.equals("f"))
-			return 0;
+		boolean correctInput = false;
+		boolean correctInput2 = false;
+		int result = 0;
+
+		while (!correctInput) {
+			String userInputLine = scanner.nextLine();
+			try {
+
+				if (userInputLine.equals("f"))
+					return 0;
+				if (userInputLine.equals("b"))
+					correctInput = true;
+				else {
+					System.out.println("Incorrect input of b/f, please enter again");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Please enter a correct b/f");
+
+			}
+		}
 		System.out.println("How much would you like to bet?");
-		return scan.nextInt();
+		while (!correctInput2) {
+			String userInputLine = scanner.nextLine();
+			try {
+				result = Integer.parseInt(userInputLine);
+				if (result <= currentMoney) {
+					correctInput2 = true;
+				} else {
+					System.out.println("Incorrect input of bet, please enter again");
+				}
+			} catch (Exception e) {
+				System.out.println("Please enter a correct bet");
+			}
+		}
+
+		return result;
 	}
-	
-	public static void print_table(Table table){
+
+	public static void print_table(Table table) {
 		System.out.println(table);
 
 	}
-	
+
 	//@return: boolean hit
-	public static boolean hit_or_stand(){
-		Scanner scan = new Scanner(System.in);
+	public static boolean hit_or_stand() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Would you like to hit or stand? (h/s)");
-		String hitOrStand = scan.next();
-		if(hitOrStand.equals("h"))
-			return true;
-		return false;
+		boolean correctInput = false;
+		while (!correctInput) {
+			String userInputLine = scanner.nextLine();
+			try {
+
+				if (userInputLine.equals("h"))
+					return true;
+				if (userInputLine.equals("s"))
+					return false;
+				else {
+					System.out.println("Incorrect input of h/s, please enter again");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Please enter a correct h/s");
+
+			}
+		}
+		return true; // doomy return
+
 	}
-	
+
 	public static void main(String[] args) {
 		InOut test = new InOut();
-		test.num_players();
-		test.get_dealer(35);
+		//test.num_players();
+		//test.get_dealer(35);
+		//test.ask_player_bet(100);
+		test.hit_or_stand();
 	}
 }

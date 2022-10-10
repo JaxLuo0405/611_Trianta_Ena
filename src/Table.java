@@ -36,7 +36,7 @@ class Table {
 		int betNum;
 		ArrayList<TE_Player> folders = new ArrayList<>();
 		for(TE_Player player:this.curPlayers){
-			betNum = InOut.ask_player_bet();
+			betNum = InOut.ask_player_bet(player.get_money());
 			if(betNum==0) //fold
 				folders.add(player);
 			player.set_bet(betNum);
