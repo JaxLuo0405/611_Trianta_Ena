@@ -45,7 +45,6 @@ public class Card {
         show = isShow;
     }
 
-
     public String get_suit_name() {
         String suit;
 

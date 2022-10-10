@@ -3,6 +3,7 @@ import java.util.*;
 
 class Table {
 	private ArrayList<TE_Player> curPlayers;
+	private TE_Player dealer;
 	private int dealerId;
 	private Decks decks;
 	
@@ -19,18 +20,12 @@ class Table {
 		return (TE_Player[]) curPlayers.toArray();
 	}
 	
-	//folds or loses
-	public void remove_player(Player player){
-		curPlayers.remove(player);
-	}
-	
 	// one card each player, face down. dealer one card face up
 	// (default: card faces up)
 	public void start_deal() throws InvalidDeckPositionException{
 		decks.shuffle();
 		for(int p=0; p<curPlayers.size(); p++){
-			if(p==dealerId)
-				//check for correctness
+			if(curPlayers.get(p).get_id()==dealerId) //face down
 				curPlayers.get(p).add_card(decks.next_card());
 			else
 				curPlayers.get(p).add_card(decks.next_card(false));
@@ -44,26 +39,28 @@ class Table {
 				continue;
 			betNum = InOut.ask_player_bet();
 			if(betNum==0){ //fold
-				this.remove_player(curPlayers.get(p));
+				curPlayers.remove(p);
 				continue;
 			}
-			
-			
 			curPlayers.get(p).set_bet(betNum);
 		}
 	}
 	
+	//pay banker & quit
+	public void lose(TE_Player player){
+		player.pay();
+		this.dealer.gain(player.get_bet());
+		this.curPlayers.remove(player);
+	}
+	
 	public void deal_two_cards(){
 		TE_Player player;
-		for(int p=0; p<curPlayers.size(); p++){
+		for(int p=0; p<this.curPlayers.size(); p++){
 			if(p==dealerId)
 				continue;
-			player = curPlayers.get(p);
-			player.add_card(decks.next_card());
-			player.add_card(decks.next_card());
-			if(player.get_handVal()>31) //if bust --> pay banker, quit
-				//pay banker and quit
-				return;
+			player = this.curPlayers.get(p);
+			player.add_card(this.decks.next_card());
+			player.add_card(this.decks.next_card());
 		}
 	}
 	
@@ -71,8 +68,9 @@ class Table {
 		InOut.start_round(roundInt);
 		
 		//get dealer index
-		dealerId = InOut.get_dealer();
-		curPlayers.get(dealerId).set_dealer();
+		this.dealerId = InOut.get_dealer();
+		this.dealer = curPlayers.get(this.dealerId);
+		this.curPlayers.get(this.dealerId).set_dealer();
 		
 		//print everyones money
 		//InOut.print_table(table){}
