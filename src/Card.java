@@ -41,6 +41,12 @@ public class Card {
 
     }
     
+    public boolean equals(Card otherCard){
+        if(this.name.equals(otherCard.name))
+            return true;
+        return false;
+    }
+    
     public void set_show(boolean isShow){
         show = isShow;
     }

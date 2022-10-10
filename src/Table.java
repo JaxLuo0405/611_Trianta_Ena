@@ -34,14 +34,14 @@ class Table {
 	
 	public void ask_bet(){
 		int betNum;
-		for(int p=0; p<curPlayers.size(); p++){
+		ArrayList<TE_Player> folders = new ArrayList<>();
+		for(TE_Player player:this.curPlayers){
 			betNum = InOut.ask_player_bet();
-			if(betNum==0){ //fold
-				curPlayers.remove(p);
-				continue;
-			}
-			curPlayers.get(p).set_bet(betNum);
+			if(betNum==0) //fold
+				folders.add(player);
+			player.set_bet(betNum);
 		}
+		lose(folders);
 	}
 	
 	public void deal_two_cards(){
@@ -91,8 +91,6 @@ class Table {
 		lose(losers);
 	}
 	
-	
-	
 	public void dealer_turn(){
 		//dealer reveal face down card
 		for(TE_Player player : this.curPlayers){
@@ -102,6 +100,40 @@ class Table {
 		while(this.dealer.get_handVal()<27){
 			this.dealer.add_card(this.decks.next_card());
 		}
+	}
+	
+	//@return: winners as an arraylist
+	public ArrayList<TE_Player> get_winners(){
+		ArrayList<TE_Player> winners = new ArrayList<>();
+		if(this.dealer.get_handVal()>31)// || this.dealer.natural_win())
+			return this.curPlayers;
+		for(TE_Player player : this.curPlayers){
+			if(player.get_handVal()>this.dealer.get_handVal())
+				winners.add(player);
+			/*else if(player.natural_win()){
+				winner.add(player);
+			}*/
+		}
+		return winners;
+	}
+	
+	public void pay_bet(ArrayList<TE_Player> winners){
+		for(TE_Player player: this.curPlayers){
+			if(winners.contains(player)){ //a winner
+				dealer.pay(player.get_bet());
+				player.gain();
+			}
+			else{ //lost
+				player.pay();
+				dealer.gain(player.get_bet());
+			}
+		}
+		
+	}
+	
+	public void check_winner(){
+		ArrayList<TE_Player> winners = get_winners();
+		pay_bet(winners);
 	}
 	
 	// to print the table
@@ -144,6 +176,7 @@ class Table {
 		dealer_turn();
 			
 		//return to TE, the players with hand value > dealer but <= 31 win
+			//check_winner
 	}
 	
 	public static void main(String[] args) {

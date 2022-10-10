@@ -102,13 +102,31 @@ class TE_Player extends Player{
 		return str;
 	}
 
+	public void pay(int betAmount){
+		this.money -= betAmount;
+	}
+	
 	public void pay(){
-		this.money -= this.bet;
+		pay(this.bet);
 	}
 
 	public void gain(int betAmount){
 		this.money += betAmount;
 	}
+	
+	public void gain(){
+		gain(this.bet);
+	}
+	
+	/*public boolean natural_win(){
+		if(hand.size()!=3)
+			return false;
+		Card aceCard = new Card()
+		if(Collections.frequency(hand, "Ace")!=1)
+			return false;
+		int faceCardNum = Collections.frequency(hand, "")
+	}
+	*/
 	
 	public String toString() {
 		String string = "";
