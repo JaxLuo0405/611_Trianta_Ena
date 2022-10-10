@@ -10,8 +10,8 @@ class Trianta_Ena implements Game {
 		
 	}
 	
-	public boolean check_winner() {
-		return false;
+	public void check_winner() {
+		
 	}
 		
 	public void play_game() throws InvalidDeckPositionException{
@@ -29,6 +29,7 @@ class Trianta_Ena implements Game {
 		int roundNum = 0;
 		//start round
 		table.one_round(roundNum++);
+		check_winner();
 	}
 	
 	public static void main(String[] args) {

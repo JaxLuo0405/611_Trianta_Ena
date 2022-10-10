@@ -57,21 +57,16 @@ class TE_Player extends Player{
 		return this.money;
 	}
 	
-	
 	public int get_bet(){
 		return this.bet;
-	}
-
-	public Card new_card(Card card){
-		//todo
-		//add new card to hand
-		hand.add(card);
-		handVal = calc_hand();
-		return null;
 	}
 	
 	public int get_handVal(){
 		return handVal;
+	}
+	
+	public void show_card(){
+		this.hand.get(0).set_show(true);
 	}
 	
 	public void add_card(Card card){
@@ -117,13 +112,11 @@ class TE_Player extends Player{
 	
 	public String toString() {
 		String string = "";
-
-		String start_str = "";
+		String start_str;
 		if(this.isDealer)
 			start_str = "Player's ";
 		else
 			start_str = "Dealer's ";
-
 
 		string += start_str+"name: " + this.get_name() + "\n";
 		string += start_str+"id: " + this.get_id() + "\n";
