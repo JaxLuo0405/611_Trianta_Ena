@@ -7,5 +7,5 @@ public interface Game {
     
     default void one_round() {}
 
-    default void play_game() {}
+    default void play_game() throws Exception{}
 }

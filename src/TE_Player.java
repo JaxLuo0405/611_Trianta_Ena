@@ -126,11 +126,11 @@ class TE_Player extends Player{
 
 	
 	public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-
-		TE_Player jax = new TE_Player("Jax");
-
-		jax.add_card(new Card('H', "Two"));
-		jax.add_card(new Card('H', "Three"));
-		System.out.println(jax);
+	
+			TE_Player jax = new TE_Player("Jax");
+	
+			jax.add_card(new Card('H', "Two"));
+			jax.add_card(new Card('H', "Three"));
+			System.out.println(jax);
 	}
 }
