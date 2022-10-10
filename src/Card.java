@@ -96,11 +96,7 @@ public class Card {
             this.value = 8;
         } else if (this.name == "Nine") {
             this.value = 9;
-        } else if (this.name == "Jack") {
-            this.value = 10;
-        } else if (this.name == "Queen") {
-            this.value = 10;
-        } else if (this.name == "King") {
+        } else if (this.name == "Ten" || this.name == "Jack" || this.name == "Queen" || this.name == "King") {
             this.value = 10;
         }
     }
@@ -114,20 +110,15 @@ public class Card {
         return this.name;
     }
 
-
+    public boolean get_show(){
+        return this.show;
+    }
     public char get_suit() {
         return this.suit;
     }
     
     public String toString(){
-
-        if (this.show ){
-            return get_suit_name() + " " + get_name();
-        }
-        else{
-            return "🃏" ;
-        }
-
+        return get_suit_name() + " " + get_name();
     }
 
 

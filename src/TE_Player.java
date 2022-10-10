@@ -12,6 +12,7 @@ class TE_Player extends Player{
 	private boolean stand = false;
 	private ArrayList<Card> hand;
 	private int handVal;
+
 	public void clear(){
 		this.handVal = 0;
 		this.bet = 0;
@@ -29,18 +30,19 @@ class TE_Player extends Player{
 	}
 	
 	public TE_Player(int pname){
-		this(String.valueOf(pname));
+		this("Player "+String.valueOf(pname));
 	}
 
+	//moneyAmount = sum of player's money
 	public void set_dealer(int moneyAmount){
-		this.money = moneyAmount;
+		//this.money = moneyAmount;
 		this.isDealer = true;
 	}
 	
 	public int get_id(){
 		return this.pid;
 	}
-	
+
 	public String get_name(){
 		return this.name;
 	}
@@ -76,43 +78,55 @@ class TE_Player extends Player{
 	}
 	
 	public void add_card(Card card){
-		//todo
 		//add new card to hand
-		hand.add(card);
-		handVal = calc_hand();
+		this.hand.add(card);
+		this.handVal = this.calc_hand();
 	}
 	
 	public int calc_hand(){
 		int totNum = 0;
 		int aceFlag = 0;
 		Card card;
-		for(int c = 0; c<hand.size(); c++){
-			card = hand.get(c);
+		for(int c = 0; c<this.hand.size(); c++){
+			card = this.hand.get(c);
 			totNum += card.get_value();
 			if(card.get_name()=="Ace" && aceFlag<2)
 				aceFlag++;
 		}
-		for(int i=aceFlag;i>0;i++){
+		for(int i=aceFlag;i>0;i--){
 			if(totNum+10<=31)
 				totNum += 10;
 		}
 		return totNum;
 	}
 
+	public String get_hand_player(){
+		String str = "";
+		for(Card card: this.hand){
+			str += card.toString() + "\n";
+		}
+		return str.strip();
+	}
+
 	public String get_hand(){
 		String str = "";
-		for(int i = 0; i < this.hand.size(); i++){
-			str += this.hand.get(i).toString() + "\n";
-
+		for(Card card : this.hand){
+			if(card.get_show())
+				str += card.toString() + "\n";
+			else
+				str += "🃏\n" ;
 		}
 		return str;
 	}
-
+	public ArrayList<Card> return_hand(){
+		return this.hand;
+	}
 	public void pay(int betAmount){
 		this.money -= betAmount;
 	}
 	
 	public void pay(){
+		System.out.println(this.name+ " pays " + this.bet + " to the dealer ");
 		pay(this.bet);
 	}
 
@@ -121,6 +135,7 @@ class TE_Player extends Player{
 	}
 	
 	public void gain(){
+		System.out.println(this.name+ " gets " + this.bet + " from the dealer ");
 		gain(this.bet);
 	}
 	
@@ -149,32 +164,31 @@ class TE_Player extends Player{
 		String string = "";
 		String start_str;
 		if(this.isDealer)
-			start_str = "Player's ";
-		else
 			start_str = "Dealer's ";
+		else
+			start_str = "Player's ";
 
 		string += start_str+"name: " + this.get_name() + "\n";
 		string += start_str+"id: " + this.get_id() + "\n";
 		string += start_str+"money: " + this.get_money() + "\n";
 		string += start_str+"bet: " + this.get_bet() + "\n";
-		string += start_str+"hand: \n \n" + this.get_hand() + "\n";
-		string += start_str+"hand total values: " + this.get_handVal() + "\n";
+		string += start_str+"hand: \n" + this.get_hand();
+//		string += start_str+"hand total values: " + this.get_handVal() + "\n";
 
 		return string;
 	}
 
+
 	
 	public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-		ArrayList<String> str = new ArrayList<>();
-		str.add("a");
-		str.add("b");
-		str.add("c");
-		str.add("d");
-		for(String s : str){
-			if(str.indexOf(s)==1){
-				str.remove(s);
-			}
-			System.out.println(s);
-		}
+		TE_Player jax = new TE_Player("Jax");
+		jax.add_card(new Card('H',"Two"));
+		System.out.println(jax.get_handVal());
+		jax.add_card(new Card('S',"Queen"));
+		System.out.println(jax.get_handVal());
+		jax.add_card(new Card('D',"Five"));
+		System.out.println(jax.get_handVal());
+		jax.add_card(new Card('D',"Ten"));
+		System.out.println(jax.get_handVal());
 	}
 }
