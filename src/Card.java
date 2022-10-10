@@ -114,8 +114,15 @@ public class Card {
         return this.suit;
     }
     
-    public String toString() {
-        return get_suit_name() + " " + get_name();
+    public String toString(){
+
+        if (this.show ){
+            return get_suit_name() + " " + get_name();
+        }
+        else{
+            return "🃏" ;
+        }
+
     }
 
 
@@ -133,9 +140,11 @@ public class Card {
     }
 
 
-//        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-//            Card jax = new Card('H',"Ace");
-//            System.out.println(jax);
-//        }
+        public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
+            Card jax = new Card('H',"Ace");
+            System.out.println(jax);
+            jax.show = false;
+            System.out.println(jax);
+        }
 
 }
