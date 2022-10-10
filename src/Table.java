@@ -35,8 +35,6 @@ class Table {
 	public void ask_bet(){
 		int betNum;
 		for(int p=0; p<curPlayers.size(); p++){
-			if(p==dealerId)
-				continue;
 			betNum = InOut.ask_player_bet();
 			if(betNum==0){ //fold
 				curPlayers.remove(p);
@@ -49,8 +47,6 @@ class Table {
 	public void deal_two_cards(){
 		TE_Player player;
 		for(int p=0; p<this.curPlayers.size(); p++){
-			if(p==dealerId)
-				continue;
 			player = this.curPlayers.get(p);
 			player.add_card(this.decks.next_card());
 			player.add_card(this.decks.next_card());
@@ -69,28 +65,43 @@ class Table {
 			lose(loser);
 	}
 	
-	//@return: false means lost
+	//@return: false means lost; true means stand
 	public boolean turn(TE_Player player){
-		boolean hit = InOut.hit_or_stand();
-		if(!hit){
-			player.stand();
-			return true;
+		boolean hit;
+		while(!player.get_stand()){
+			hit = InOut.hit_or_stand();
+			if(!hit){
+				player.stand();
+				continue;
+			}
+			player.add_card(this.decks.next_card());
+			if(player.get_handVal()>31)
+				return false;
 		}
-		player.add_card(this.decks.next_card());
-		if(player.get_handVal()>31)
-			return false;
 		return true;
 	}
 	
-	public void one_turn(){
+	public void take_turns(){
 		ArrayList<TE_Player> losers = new ArrayList<>();
 		for(TE_Player player : this.curPlayers){
-			if(player.get_stand())
-				continue;
-			if(!turn(player)) //lost
+			turn(player);
+			if(!player.get_stand()) //lost
 				losers.add(player);
 		}
 		lose(losers);
+	}
+	
+	
+	
+	public void dealer_turn(){
+		//dealer reveal face down card
+		for(TE_Player player : this.curPlayers){
+			player.show_card();
+		}
+		//dealer gets hit until their hand >= 27
+		while(this.dealer.get_handVal()<27){
+			this.dealer.add_card(this.decks.next_card());
+		}
 	}
 	
 	// to print the table
@@ -111,6 +122,7 @@ class Table {
 		
 		//start dealng with one card each player, face down. dealer one card face up
 		start_deal();
+		this.curPlayers.remove(this.dealer);
 		
 		//print table
 		//InOut.print_table(table){}
@@ -124,13 +136,14 @@ class Table {
 		//then start turn:
 			//each player can hit or stand
 			//if hit --> if bust --> pay banker, quit
-		one_turn();
+			//after this method, all players stand or lose
+		take_turns();
 		
-		
-		
-		//if for a turn all players stand or busted --> dealer reveal face down card???
-			//dealer gets hit until their hand >=27
-		//the players with hand value > dealer but <= 31 win
+		//dealer reveal face down card???
+			//dealer gets hit until their hand >= 27
+		dealer_turn();
+			
+		//return to TE, the players with hand value > dealer but <= 31 win
 	}
 	
 	public static void main(String[] args) {
