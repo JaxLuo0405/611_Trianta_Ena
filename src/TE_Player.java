@@ -103,6 +103,13 @@ class TE_Player extends Player{
 		return str;
 	}
 
+	public void pay(){
+		this.money -= this.bet;
+	}
+
+	public void gain(int betAmount){
+		this.money += betAmount;
+	}
 	
 	public String toString() {
 		String string = "";
@@ -126,11 +133,16 @@ class TE_Player extends Player{
 
 	
 	public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-	
-			TE_Player jax = new TE_Player("Jax");
-	
-			jax.add_card(new Card('H', "Two"));
-			jax.add_card(new Card('H', "Three"));
-			System.out.println(jax);
+		ArrayList<String> str = new ArrayList<>();
+		str.add("a");
+		str.add("b");
+		str.add("c");
+		str.add("d");
+		for(String s : str){
+			if(str.indexOf(s)==1){
+				str.remove(s);
+			}
+			System.out.println(s);
+		}
 	}
 }
