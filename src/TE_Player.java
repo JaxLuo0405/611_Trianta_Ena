@@ -49,6 +49,10 @@ class TE_Player extends Player{
 		stand = true;
 	}
 	
+	public boolean get_stand(){
+		return stand;
+	}
+	
 	public int get_money(){
 		return this.money;
 	}

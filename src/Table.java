@@ -46,13 +46,6 @@ class Table {
 		}
 	}
 	
-	//pay banker & quit
-	public void lose(TE_Player player){
-		player.pay();
-		this.dealer.gain(player.get_bet());
-		this.curPlayers.remove(player);
-	}
-	
 	public void deal_two_cards(){
 		TE_Player player;
 		for(int p=0; p<this.curPlayers.size(); p++){
@@ -64,12 +57,53 @@ class Table {
 		}
 	}
 	
+	//pay banker & quit
+	public void lose(TE_Player loser){
+		loser.pay();
+		this.dealer.gain(loser.get_bet());
+		this.curPlayers.remove(loser);
+	}
+	
+	public void lose(ArrayList<TE_Player> losers){
+		for(TE_Player loser : losers)
+			lose(loser);
+	}
+	
+	//@return: false means lost
+	public boolean turn(TE_Player player){
+		boolean hit = InOut.hit_or_stand();
+		if(!hit){
+			player.stand();
+			return true;
+		}
+		player.add_card(this.decks.next_card());
+		if(player.get_handVal()>31)
+			return false;
+		return true;
+	}
+	
+	public void one_turn(){
+		ArrayList<TE_Player> losers = new ArrayList<>();
+		for(TE_Player player : this.curPlayers){
+			if(player.get_stand())
+				continue;
+			if(!turn(player)) //lost
+				losers.add(player);
+		}
+		lose(losers);
+	}
+	
+	// to print the table
+	public String toString(){
+		return null;
+	}
+	
 	public void one_round(int roundInt) throws InvalidDeckPositionException{
 		InOut.start_round(roundInt);
 		
 		//get dealer index
 		this.dealerId = InOut.get_dealer();
-		this.dealer = curPlayers.get(this.dealerId);
+		this.dealer = this.curPlayers.get(this.dealerId);
 		this.curPlayers.get(this.dealerId).set_dealer();
 		
 		//print everyones money
@@ -90,6 +124,10 @@ class Table {
 		//then start turn:
 			//each player can hit or stand
 			//if hit --> if bust --> pay banker, quit
+		one_turn();
+		
+		
+		
 		//if for a turn all players stand or busted --> dealer reveal face down card???
 			//dealer gets hit until their hand >=27
 		//the players with hand value > dealer but <= 31 win
