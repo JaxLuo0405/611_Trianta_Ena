@@ -105,14 +105,16 @@ class Table {
 	//@return: winners as an arraylist
 	public ArrayList<TE_Player> get_winners(){
 		ArrayList<TE_Player> winners = new ArrayList<>();
-		if(this.dealer.get_handVal()>31)// || this.dealer.natural_win())
+		if(this.dealer.get_handVal()>31)
 			return this.curPlayers;
+		if(this.dealer.natural_win())
+			return winners;
 		for(TE_Player player : this.curPlayers){
 			if(player.get_handVal()>this.dealer.get_handVal())
 				winners.add(player);
-			/*else if(player.natural_win()){
-				winner.add(player);
-			}*/
+			else if(player.natural_win()){
+				winners.add(player);
+			}
 		}
 		return winners;
 	}

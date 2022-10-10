@@ -118,15 +118,20 @@ class TE_Player extends Player{
 		gain(this.bet);
 	}
 	
-	/*public boolean natural_win(){
-		if(hand.size()!=3)
+	public boolean natural_win(){
+		if(this.handVal!=31)
 			return false;
-		Card aceCard = new Card()
-		if(Collections.frequency(hand, "Ace")!=1)
+		if(this.hand.size()!=3)
 			return false;
-		int faceCardNum = Collections.frequency(hand, "")
+		int faceNum = 0;
+		for(Card card: hand){
+			if(card.get_name().equals("Jack") || card.get_name().equals("Queen") || card.get_name().equals("King"))
+				faceNum ++;
+		}
+		if(faceNum==2)
+			return true;
+		return false;
 	}
-	*/
 	
 	public String toString() {
 		String string = "";
