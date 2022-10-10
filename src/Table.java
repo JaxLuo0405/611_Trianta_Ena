@@ -102,7 +102,7 @@ class Table {
 		InOut.start_round(roundInt);
 		
 		//get dealer index
-		this.dealerId = InOut.get_dealer();
+		this.dealerId = InOut.get_dealer(curPlayers.size());
 		this.dealer = this.curPlayers.get(this.dealerId);
 		this.curPlayers.get(this.dealerId).set_dealer();
 		
