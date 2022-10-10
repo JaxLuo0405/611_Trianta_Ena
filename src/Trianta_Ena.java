@@ -5,13 +5,12 @@ class Trianta_Ena implements Game {
 	public TE_Player[] players; //index == player id
 	public Table table;
 	
-	
 	public Trianta_Ena(){
 		
 	}
 	
 	public void check_winner() {
-		
+		this.table.check_winner();
 	}
 		
 	public void play_game() throws InvalidDeckPositionException{
