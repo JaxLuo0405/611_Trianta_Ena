@@ -105,7 +105,7 @@ class TE_Player extends Player{
 		for(Card card: this.hand){
 			str += card.toString() + "\n";
 		}
-		return str.strip();
+		return str;
 	}
 
 	public String get_hand(){
