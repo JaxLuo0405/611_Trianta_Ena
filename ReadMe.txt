@@ -13,8 +13,17 @@ U18543513
 ## Files
 ---------------------------------------------------------------------------
 All .java files package cs611pa2.
-**Cards.java
+Cards.java:
+This class depicts the card object used in Trianta Ena game. It contains information of one card like suit, value, and name. Additionally, we also give each card a boolean called show to declare it's face down or up. We add one emoji 🃏 to print the face down card, which is pretty fun :)
 
+Decks.java:
+This class depicts two decks of card objects. This mainly includes the mechanism to shuffle the decks to make sure the players will get random cards in the game. it contains swap_cards used for shuffle decks and next_card for players to acquire cards each time.
+
+InOut.java:
+This class depicts the main block of the print messages in the terminal block during the game, which contains several methods like num_players(), get_dealer(),start_round(),see_hand(), ask_player_bet(), hit_or_stand(), one_more_round(),ask_to_change_dealer().
+
+
+This class
 
 ## Notes
 ---------------------------------------------------------------------------
@@ -45,7 +54,7 @@ Here is the current table situation:
 -------------------------------------
 Dealer's name: Player 0
 Dealer's id: 0
-Dealer's money: 100
+Dealer's money: 200
 Dealer's bet: 0
 Dealer's hand: 
 
@@ -65,7 +74,7 @@ Player's hand:
 Start dealing the first card to each player.
 Dealer's name: Player 0
 Dealer's id: 0
-Dealer's money: 100
+Dealer's money: 200
 Dealer's bet: 0
 Dealer's hand: 
 Spades Queen
@@ -102,7 +111,7 @@ Here is the current table situation:
 -------------------------------------
 Dealer's name: Player 0
 Dealer's id: 0
-Dealer's money: 100
+Dealer's money: 200
 Dealer's bet: 0
 Dealer's hand: 
 Spades Queen
@@ -171,7 +180,7 @@ Player 1 pays 50 to the dealer
 Dealer's turn!
 Dealer's name: Player 0
 Dealer's id: 0
-Dealer's money: 150
+Dealer's money: 250
 Dealer's bet: 0
 Dealer's hand: 
 Spades Queen
@@ -184,7 +193,7 @@ Player 2 gets 40 from the dealer
 -------------------------------------
 Dealer's name: Player 0
 Dealer's id: 0
-Dealer's money: 110
+Dealer's money: 210
 Dealer's bet: 0
 Dealer's hand: 
 Spades Queen
