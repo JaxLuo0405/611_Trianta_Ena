@@ -13,7 +13,7 @@ U18543513
 ## Files
 ---------------------------------------------------------------------------
 All .java files package cs611pa2.
-(description of java files)
+**Cards.java**
 
 
 ## Notes
