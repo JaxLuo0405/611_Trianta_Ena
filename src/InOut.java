@@ -6,7 +6,6 @@ class InOut {
 
 
 	public static int num_players() {
-
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Welcome to play Trianta Ena! Please enter the number of players (including dealer):");
 		boolean correctInput = false;
@@ -32,7 +31,6 @@ class InOut {
 	}
 
 	public static int get_dealer(int playerNum) {
-
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Which player index would you like to be the dealer?");
 		boolean correctInput = false;
@@ -147,7 +145,6 @@ class InOut {
 	}
 
 	public static boolean one_more_round(){
-
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Would you like to play one more round?(y/n)");
 		boolean correctInput = false;
@@ -160,7 +157,7 @@ class InOut {
 					return true;
 				}
 				if (userInputLine.equals("n")) {
-					System.out.println("End of Trianta Ena. Bye!");
+					end_game();
 					return false;
 				}
 				else {
@@ -174,6 +171,10 @@ class InOut {
 		}
 		return true; // dummy return
 
+	}
+	
+	public static void end_game(){
+		System.out.println("End of Trianta Ena. Bye!");
 	}
 
 	public static boolean ask_to_change_dealer(String pname){

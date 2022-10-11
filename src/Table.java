@@ -17,7 +17,7 @@ class Table {
 			totMoney += player.get_money();
 			(this.curPlayers).add(player);
 		}
-		this.dealer.set_dealer(totMoney);
+		this.dealer.set_dealer();
 	}
 	
 	//get players on table as an array
@@ -144,7 +144,6 @@ class Table {
 				dealer.gain(player.get_bet());
 			}
 		}
-		
 	}
 	
 	public void check_winner(){
@@ -166,6 +165,9 @@ class Table {
 	}
 	
 	public void one_round(int roundInt) throws InvalidDeckPositionException{
+		if(roundInt==0)
+			this.dealer.init_dealer();
+		
 		InOut.start_round(roundInt);
 
 

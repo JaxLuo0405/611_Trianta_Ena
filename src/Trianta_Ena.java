@@ -37,6 +37,10 @@ class Trianta_Ena implements Game {
 			//start round
 			this.table.one_round(roundNum++);
 			check_winner();
+			if(this.dealer.get_money()<=0){
+				InOut.end_game();
+				return;
+			}
 			System.out.println("-------------------------------------");
 			for (TE_Player player: this.players){
 				System.out.println(player);
