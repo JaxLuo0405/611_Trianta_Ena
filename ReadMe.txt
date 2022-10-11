@@ -12,22 +12,38 @@ U18543513
 
 ## Files
 ---------------------------------------------------------------------------
-All .java files package cs611pa2.
-Cards.java:
+### Card.java:
 This class depicts the card object used in Trianta Ena game. It contains information of one card like suit, value, and name. Additionally, we also give each card a boolean called show to declare it's face down or up. We add one emoji 🃏 to print the face down card, which is pretty fun :)
 
-Decks.java:
+### Decks.java:
 This class depicts two decks of card objects. This mainly includes the mechanism to shuffle the decks to make sure the players will get random cards in the game. it contains swap_cards used for shuffle decks and next_card for players to acquire cards each time.
 
-InOut.java:
+### InOut.java:
 This class depicts the main block of the print messages in the terminal block during the game, which contains several methods like num_players(), get_dealer(),start_round(),see_hand(), ask_player_bet(), hit_or_stand(), one_more_round(),ask_to_change_dealer().
 
+### Player.java:
+This class is one of the classes from Jessica's PA1. It has three variables: name, playerNum and winNum.
 
-This class
+### TE_Player.java
+This class depicts the human player of the Trianta Ena game. We give it a boolean variable IsDealer to declare if this TE_Player is a dealer or a normal player. Besides we have String variable name, integer variables playerNum and winNum extended from Player.java; We also have player id, and player money, player bet. Finally, we have an arraylist of Card objects called hand to record the current cards that one TE_Player holds.
 
+### InvalidCardSuitException.java/InvalidCardValueNameException.java/InvalidDeckPositionException.java
+These three classes are all extended from Exception class, which is also a common way to handle the exception output cases. We use these three cases to test the card and decks classes output. Each exception class handles the error message as its name literally says.
+
+### Table.java
+This class depicts the table of the current Trianta Ena game. It has three variables: curPlayers records the current list of players still playing in the table. dealer is the current dealer as a TE_Player object. Decks as the decks object are the two decks used for the table. This class contains methods of handling the process of the game like start-deal, ask_bet, deal_two_cards ... 
+
+### Game.java
+This class is a simple interface which contains checkwinner(), one_round(), and play_game() methods from Jax's PA1. 
+
+### Trianta_Ena.java
+This class is implemented from Game.java and hold the whole progress of the Trianta Ena game. It has several variables: TE_Player[] players as all the players entering the whole game.  TE_Player dealer is the dealer. Table table is the game table object. it has one more change_dealeer function served for the functionality of switiching dealers if needed.
+
+### Main.java 
+This class is just to initalize a Trianta_Ena class and run that play_game method in it.
 ## Notes
 ---------------------------------------------------------------------------
-N/A
+Extendibility of PA1 is partly mentioned in this txt. For more information, there is one hw_design pdf which includes the initial design, paragraphs of explaining extendibility, and graph of extendibility demonstration.
 
 
 ## How to compile and run
@@ -38,7 +54,6 @@ N/A
 javac src/Main.java
 java src.Main
 ```
-
 
 ## Input/Output Example
 ---------------------------------------------------------------------------
