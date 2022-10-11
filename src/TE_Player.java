@@ -33,9 +33,12 @@ class TE_Player extends Player{
 		this("Player "+String.valueOf(pname));
 	}
 
-	//moneyAmount = sum of player's money
-	public void set_dealer(int moneyAmount){
-		//this.money = moneyAmount;
+	public void init_dealer(){
+		this.money = 100*(playerNum-1);
+		this.isDealer = true;
+	}
+	
+	public void set_dealer(){
 		this.isDealer = true;
 	}
 	
