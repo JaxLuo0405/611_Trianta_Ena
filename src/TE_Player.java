@@ -3,6 +3,7 @@ import java.util.*;
 
 class TE_Player extends Player{
 	private static int playerNum;
+	private static int targetSum;
 	private String name;
 	private int winNum;
 	private boolean isDealer = false;
@@ -20,7 +21,9 @@ class TE_Player extends Player{
 		this.stand = false;
 		this.isDealer = false;
 	}
-	public TE_Player(String pname){ //normal player
+	
+	public TE_Player(String pname, int sum){ //normal player
+		this.targetSum = sum;
 		this.money = 100;
 		this.winNum = 0;
 		this.name = pname;
@@ -29,8 +32,8 @@ class TE_Player extends Player{
 		this.hand = new ArrayList<Card>();
 	}
 	
-	public TE_Player(int pname){
-		this("Player "+String.valueOf(pname));
+	public TE_Player(int pname, int sum){
+		this("Player "+String.valueOf(pname), sum);
 	}
 
 	public void init_dealer(){
@@ -97,7 +100,7 @@ class TE_Player extends Player{
 				aceFlag++;
 		}
 		for(int i=aceFlag;i>0;i--){
-			if(totNum+10<=31)
+			if(totNum+10<=this.targetSum)
 				totNum += 10;
 		}
 		return totNum;
@@ -143,7 +146,7 @@ class TE_Player extends Player{
 	}
 	
 	public boolean natural_win(){
-		if(this.handVal!=31)
+		if(this.handVal!=this.targetSum)
 			return false;
 		if(this.hand.size()!=3)
 			return false;
