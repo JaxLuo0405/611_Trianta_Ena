@@ -5,10 +5,11 @@ class Table { //table for trianta ena
 	private ArrayList<TE_Player> curPlayers; //only players, no dealer
 	private TE_Player dealer;
 	private Decks decks;
-	private static final int deckNum = 2;
+	private static int targetSum;
 	
-	public Table(TE_Player[] players, TE_Player dealer){
-		decks = new Decks(deckNum);
+	public Table(TE_Player[] players, TE_Player dealer, Decks decks, int sum){
+		this.decks = decks;
+		this.targetSum = sum;
 		this.dealer = dealer;
 		this.curPlayers = new ArrayList<>();
 		int totMoney = 0;
@@ -82,7 +83,7 @@ class Table { //table for trianta ena
 				continue;
 			}
 			player.add_card(this.decks.next_card());
-			if(player.get_handVal()>31){
+			if(player.get_handVal()>targetSum){
 				System.out.println("You busted. LOSER.");
 				InOut.see_hand(player);
 				System.out.println("-------------------------------------");
@@ -120,7 +121,7 @@ class Table { //table for trianta ena
 	//@return: winners as an arraylist
 	public ArrayList<TE_Player> get_winners(){
 		ArrayList<TE_Player> winners = new ArrayList<>();
-		if(this.dealer.get_handVal()>31)
+		if(this.dealer.get_handVal()>targetSum)
 			return this.curPlayers;
 		if(this.dealer.natural_win())
 			return winners;

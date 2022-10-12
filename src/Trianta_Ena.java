@@ -6,9 +6,12 @@ class Trianta_Ena implements Game {
 //	public int dealerId;
 	public TE_Player dealer;
 	public Table table;
+	private Decks decks;
+	private static final int deckNum = 2;
+	private static final int targetSum = 31;
 	
 	public Trianta_Ena(){
-		
+		decks = new Decks(deckNum);
 	}
 	
 	public void check_winner() {
@@ -32,7 +35,7 @@ class Trianta_Ena implements Game {
 		this.dealer = players[InOut.get_dealer(players.length)];
 
 		while(anotherRound){
-			this.table = new Table(this.players,this.dealer);
+			this.table = new Table(this.players, this.dealer, this.decks, this.targetSum);
 
 			//start round
 			this.table.one_round(roundNum++);
