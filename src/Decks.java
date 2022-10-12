@@ -5,35 +5,46 @@ import java.util.Random;
 
 public class Decks extends Exception implements Serializable{// This class is for the 2 decks of the card
     private int nextCardIndex;
+    private int deckNum; //number of decks
 
     Card[] decks = new Card[104];
 
-    public Decks() {
-
+    public Decks(int n) {
+        if(n<=0)
+            throw new IllegalArgumentException("Number of decks must be at least one.");
+        this.deckNum = n;
         int count = 0;
         String[] values = new String[]{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
         List<String> valuesList = new ArrayList<>(Arrays.asList(values));
         try { // add two decks
             for (int i = 0; i <= 12; i++) {
-                decks[count++] = new Card('H', valuesList.get(i));
-                decks[count++] = new Card('H', valuesList.get(i));
+                for(int d=0; d<deckNum; d++){
+                    decks[count++] = new Card('H', valuesList.get(i));
+                }
             }
             for (int i = 0; i <= 12; i++) {
-                decks[count++] = new Card('S', valuesList.get(i));
-                decks[count++] = new Card('S', valuesList.get(i));
+                for(int d=0; d<deckNum; d++){
+                    decks[count++] = new Card('S', valuesList.get(i));
+                }
             }
             for (int i = 0; i <= 12; i++) {
-                decks[count++] = new Card('C', valuesList.get(i));
-                decks[count++] = new Card('C', valuesList.get(i));
+                for(int d=0; d<deckNum; d++){
+                    decks[count++] = new Card('C', valuesList.get(i));
+                }
             }
             for (int i = 0; i <= 12; i++) {
-                decks[count++] = new Card('D', valuesList.get(i));
-                decks[count++] = new Card('D', valuesList.get(i));
+                for(int d=0; d<deckNum; d++){
+                    decks[count++] = new Card('D', valuesList.get(i));
+                }
             }
         } catch (InvalidCardValueNameException | InvalidCardSuitException exp1) {
 
         }
         nextCardIndex = 0;
+    }
+    
+    public Decks(){
+        this(1);
     }
     
     

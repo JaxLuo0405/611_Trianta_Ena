@@ -1,13 +1,14 @@
 package src;
 import java.util.*;
 
-class Table {
+class Table { //table for trianta ena
 	private ArrayList<TE_Player> curPlayers; //only players, no dealer
 	private TE_Player dealer;
 	private Decks decks;
+	private static final int deckNum = 2;
 	
 	public Table(TE_Player[] players, TE_Player dealer){
-		decks = new Decks();
+		decks = new Decks(deckNum);
 		this.dealer = dealer;
 		this.curPlayers = new ArrayList<>();
 		int totMoney = 0;
