@@ -102,10 +102,10 @@ public class Card {
 
 
         public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-            Card jax = new Card('H',"Ace");
-            System.out.println(jax);
-            jax.show = false;
-            System.out.println(jax);
+//            Card jax = new Card('H',"Ace");
+//            System.out.println(jax);
+//            jax.show = false;
+//            System.out.println(jax);
         }
 
 }

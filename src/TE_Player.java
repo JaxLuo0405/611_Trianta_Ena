@@ -187,14 +187,14 @@ class TE_Player extends Player{
 
 	
 	public static void main(String[] args) throws InvalidCardSuitException, InvalidCardValueNameException {
-		TE_Player jax = new TE_Player("Jax");
-		jax.add_card(new Card('H',"Two"));
-		System.out.println(jax.get_handVal());
-		jax.add_card(new Card('S',"Queen"));
-		System.out.println(jax.get_handVal());
-		jax.add_card(new Card('D',"Five"));
-		System.out.println(jax.get_handVal());
-		jax.add_card(new Card('D',"Ten"));
-		System.out.println(jax.get_handVal());
+//		TE_Player jax = new TE_Player("Jax");
+//		jax.add_card(new Card('H',"Two"));
+//		System.out.println(jax.get_handVal());
+//		jax.add_card(new Card('S',"Queen"));
+//		System.out.println(jax.get_handVal());
+//		jax.add_card(new Card('D',"Five"));
+//		System.out.println(jax.get_handVal());
+//		jax.add_card(new Card('D',"Ten"));
+//		System.out.println(jax.get_handVal());
 	}
 }
