@@ -17,6 +17,16 @@ U18543513
 javac src/Main.java
 java src.Main
 ```
+You can also git clone our codes by running 
+```
+git clone git@github.com:JaxLuo0405/611_Trianta_Ena.git
+```
+
+java SDK setting:  Oracle OpenJDK version 19
+## Teamwork demonstration
+---------------------------------------------------------------------------
+We created a github repo for this prohject and the progress is reflected in the commit messages. 
+https://github.com/JaxLuo0405/611_Trianta_Ena
 
 
 ## Files
