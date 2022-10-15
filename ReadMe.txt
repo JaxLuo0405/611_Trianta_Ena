@@ -9,6 +9,15 @@ Shengyao (Jax) Luo
 jaxluo@bu.edu
 U18543513
 
+## How to compile and run
+---------------------------------------------------------------------------
+1. Navigate to the directory "611_Trianta_Ena" after unzipping the files
+2. Run the following instructions:
+```
+javac src/Main.java
+java src.Main
+```
+
 
 ## Files
 ---------------------------------------------------------------------------
@@ -16,7 +25,7 @@ U18543513
 This class depicts the card object used in Trianta Ena game. It contains information of one card like suit, value, and name. Additionally, we also give each card a boolean called show to declare it's face down or up. We add one emoji 🃏 to print the face down card, which is pretty fun :)
 
 ### Decks.java:
-This class depicts two decks of card objects. This mainly includes the mechanism to shuffle the decks to make sure the players will get random cards in the game. it contains swap_cards used for shuffle decks and next_card for players to acquire cards each time.
+This class depicts two decks of card objects. This mainly includes the mechanism to shuffle the decks to make sure the players will get random cards in the game. it contains swap_cards used for shuffle decks and next_card for players to acquire cards each time. We also add the cardDict variable in Decks, which will be passed as an input parameters to the Card constructor to make name:value pair assignments more concise.
 
 ### InOut.java:
 This class depicts the main block of the print messages in the terminal block during the game, which contains several methods like num_players(), get_dealer(),start_round(),see_hand(), ask_player_bet(), hit_or_stand(), one_more_round(),ask_to_change_dealer().
@@ -46,14 +55,6 @@ This class is just to initalize a Trianta_Ena class and run that play_game metho
 Extendibility of PA1 is partly mentioned in this txt. For more information, there is one hw_design pdf which includes the initial design, paragraphs of explaining extendibility, and graph of extendibility demonstration.
 
 
-## How to compile and run
----------------------------------------------------------------------------
-1. Navigate to the directory "611_Trianta_Ena" after unzipping the files
-2. Run the following instructions:
-```
-javac src/Main.java
-java src.Main
-```
 
 ## Input/Output Example
 ---------------------------------------------------------------------------
